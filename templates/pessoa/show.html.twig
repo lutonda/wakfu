@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pessoa{% endblock %}
+
+{% block body %}
+    <h1>Pessoa</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pessoa.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ pessoa.nome }}</td>
+            </tr>
+            <tr>
+                <th>Linkedin</th>
+                <td>{{ pessoa.linkedin }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ pessoa.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ pessoa.descricao }}</td>
+            </tr>
+            <tr>
+                <th>Imagem</th>
+                <td>{{ pessoa.imagem }}</td>
+            </tr>
+            <tr>
+                <th>Icon</th>
+                <td>{{ pessoa.icon }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ pessoa.created ? pessoa.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{{ pessoa.isactive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pessoa_index') }}">back to list</a>
+
+    <a href="{{ path('pessoa_edit', {'id': pessoa.id}) }}">edit</a>
+
+    {{ include('pessoa/_delete_form.html.twig') }}
+{% endblock %}

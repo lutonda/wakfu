@@ -8,11 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/front/css2.css" rel="stylesheet">
-    <link rel="stylesheet" href="./front/font-awesome.min.css">
-    <link rel="stylesheet" href="./front/ionicons.min.css">
-    <link rel="stylesheet" href="./front/animate.css">
-    <script type="text/javascript" async="" src="./front/analytics.js"></script>
-    <script defer="" src="./front/js.js"></script>
+    <link rel="stylesheet" href="/front/font-awesome.min.css">
+    <link rel="stylesheet" href="/front/ionicons.min.css">
+    <link rel="stylesheet" href="/front/animate.css">
+    <style>
+    hero-wrap .overlay {
+    opacity: 0.6 !important;
+    }
+    .hero-wrap {
+    height: default !important;
+    min-height: default !important;
+}
+    </style>
+    <script type="text/javascript" async="" src="/front/analytics.js"></script>
+    <script defer="" src="/front/js.js"></script>
     <script>
         (function(w, d) {
             ! function(a, e, t, r, z) {
@@ -37,8 +46,8 @@
     </script>
     <style></style>
     <style></style>
-    <script type="text/javascript" charset="UTF-8" src="./front/common.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="./front/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/front/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/front/util.js"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
        
     </head>
@@ -88,24 +97,24 @@ ISP-BENGO
     <nav class="navbar navbar-expand-lg  ftco-navbar-light">
         <div class="container-xl">
 
-            <a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn-custom order-lg-last">Get Certificate</a>
+            <a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn-custom order-lg-last">Conheça-nos</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="fa fa-bars"></span> Menu
 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="https://preview.colorlib.com/theme/academia/index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/courses.html">Cursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/about.html">Instituicional</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/team.html">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/pricing.html">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/blog.html">Noticias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://preview.colorlib.com/theme/academia/contact.html">Contactos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('home') }}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Instituicional</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('evento_index') }}">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('noticia_index') }}">Noticias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Contactos</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="hero-wrap" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.Qvddt6BzWR.webp)">
+    <section class="hero-wrap" style="background-image:url(/images/xbg_1.jpg.pagespeed.ic.Qvddt6BzWR.webp)">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center">
@@ -114,8 +123,7 @@ ISP-BENGO
                         <span class="subheading">Seja benvindo ao </span>
                         <h1 class="mb-4">Instituto Superior Politécnico do Bengo </h1>
                         <p class="mb-4">criado ao abrigo do Decreto Presidencial n.º  285/20 de 29 de Outubro  que aprova e reorganiza a rede de instituições públicas de ensino superior, cujo o seu Estatuto Orgânico aprovado através do Decreto Presidencial n.º 311/21 de 22 de Dezembro.</p>
-                        <p><a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary p-4 py-3">Saber mais! <span class="fa fa-cevron-right"></span>
-                        </a> <a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-white p-4 py-3">Ver Coursos <span class="fa fa-menu"></span></a></p>
+                        
                     </div>
                 </div>
             </div>
@@ -125,7 +133,7 @@ ISP-BENGO
         <div class="container-xl">
             <div class="row g-xl-5">
                 <div class="col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-                    <div class="img w-100" style="background-image:url(images/xabout.jpg.pagespeed.ic.cvAg9veoWl.png)">
+                    <div class="img w-100" style="background-image:url(/images/xabout.jpg.pagespeed.ic.cvAg9veoWl.png)">
                     </div>
                 </div>
                 <div class="col-md-6 heading-section d-flex align-items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
@@ -166,7 +174,7 @@ ISP-BENGO
             </div>
         </div>
     </section>
-    <section class="ftco-section-counter img" style="background-image:url(images/xbg_3.jpg.pagespeed.ic._5ftKPXrag.webp)">
+    <section class="ftco-section-counter img" style="background-image:url(/images/xbg_3.jpg.pagespeed.ic._5ftKPXrag.webp)">
         <div class="overlay"></div>
         <div class="container">
             <div class="row section-counter viewed">
@@ -222,7 +230,7 @@ ISP-BENGO
             <div class="row justify-content-center pb-4">
                 <div class="col-md-10 text-center heading-section aos-init aos-animate" data-aos="fade-up">
                     <span class="subheading">Cursos</span>
-                    <h2 class="mb-5">Explore os masi diversos Cursos</h2>
+                    <h2 class="mb-5">Explore os mais diversos Cursos</h2>
                 </div>
             </div>
             <div class="row">
@@ -411,7 +419,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -427,7 +435,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -443,7 +451,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -459,7 +467,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -475,7 +483,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -491,7 +499,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -507,7 +515,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -523,7 +531,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -539,7 +547,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -555,7 +563,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -571,7 +579,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -587,7 +595,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -603,7 +611,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_3.jpg.pagespeed.ic.Cln-jaM1jK.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -619,7 +627,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_1.jpg.pagespeed.ic.a2MnMHMs44.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -635,7 +643,7 @@ ISP-BENGO
                                         <div class="testimony-wrap">
                                             <div class="text">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <div class="user-img" style="background-image:url(images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
+                                                    <div class="user-img" style="background-image:url(/images/xperson_2.jpg.pagespeed.ic.Xrdu_nPZRp.webp)">
                                                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                                     </div>
                                                     <div class="ps-3 tx">
@@ -666,7 +674,7 @@ ISP-BENGO
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4 d-flex">
                     <div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)">
+                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(/images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)">
                         </a>
                         <div class="text">
                             <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span> <span><a href="https://preview.colorlib.com/theme/academia/index.html#"><i class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
@@ -677,7 +685,7 @@ ISP-BENGO
                 </div>
                 <div class="col-md-6 col-lg-4 d-flex">
                     <div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_2.jpg.pagespeed.ic.LFeFzbiNiA.webp)">
+                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(/images/ximage_2.jpg.pagespeed.ic.LFeFzbiNiA.webp)">
                         </a>
                         <div class="text">
                             <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span> <span><a href="https://preview.colorlib.com/theme/academia/index.html#"><i class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
@@ -688,7 +696,7 @@ ISP-BENGO
                 </div>
                 <div class="col-md-6 col-lg-4 d-flex">
                     <div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_3.jpg.pagespeed.ic.mPHHvHgH24.webp)">
+                        <a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(/images/ximage_3.jpg.pagespeed.ic.mPHHvHgH24.webp)">
                         </a>
                         <div class="text">
                             <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span> <span><a href="https://preview.colorlib.com/theme/academia/index.html#"><i class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
@@ -828,7 +836,7 @@ ISP-BENGO
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Recent Posts</h2>
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img img rounded" style="background-image:url(images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)"></a>
+                            <a class="blog-img img rounded" style="background-image:url(/images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)"></a>
                             <div class="text">
                                 <div class="meta">
                                     <div><a href="https://preview.colorlib.com/theme/academia/index.html#"><span class="fa fa-calendar"></span> Jan. 18, 2021</a></div>
@@ -838,7 +846,7 @@ ISP-BENGO
                             </div>
                         </div>
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img img rounded" style="background-image:url(images/ximage_2.jpg.pagespeed.ic.LFeFzbiNiA.webp)"></a>
+                            <a class="blog-img img rounded" style="background-image:url(/images/ximage_2.jpg.pagespeed.ic.LFeFzbiNiA.webp)"></a>
                             <div class="text">
                                 <div class="meta">
                                     <div><a href="https://preview.colorlib.com/theme/academia/index.html#"><span class="fa fa-calendar"></span> Jan. 18, 2021</a></div>
@@ -848,7 +856,7 @@ ISP-BENGO
                             </div>
                         </div>
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img img rounded" style="background-image:url(images/ximage_4.jpg.pagespeed.ic.maJrh0w-s2.webp)"></a>
+                            <a class="blog-img img rounded" style="background-image:url(/images/ximage_4.jpg.pagespeed.ic.maJrh0w-s2.webp)"></a>
                             <div class="text">
                                 <div class="meta">
                                     <div><a href="https://preview.colorlib.com/theme/academia/index.html#"><span class="fa fa-calendar"></span> Jan. 18, 2021</a></div>
@@ -887,16 +895,16 @@ ISP-BENGO
         </div>
     </footer>
         {% block body %}{% endblock %}
-        <script src="./front/bootstrap.bundle.min.js"></script>
-    <script src="./front/tiny-slider.js"></script>
-    <script src="./front/glightbox.min.js"></script>
+        <script src="/front/bootstrap.bundle.min.js"></script>
+    <script src="/front/tiny-slider.js"></script>
+    <script src="/front/glightbox.min.js"></script>
     <script>
         eval(mod_pagespeed_7_hPlGGYt1);
     </script>
     <script>
         eval(mod_pagespeed_QuG92EaMQX);
     </script>
-    <script src="./front/js.js"></script>
+    <script src="/front/js.js"></script>
     <script>
         eval(mod_pagespeed_mTpoFW8ALW);
     </script>
@@ -904,7 +912,7 @@ ISP-BENGO
         eval(mod_pagespeed_omftQ6ch3C);
     </script>
 
-    <script async="" src="./front/js(1).js"></script>
+    <script async="" src="/front/js(1).js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -915,7 +923,7 @@ ISP-BENGO
 
         gtag('config', 'UA-23581568-13');
     </script>
-    <script defer="" src="./front/v652eace1692a40cfa3763df669d7439c1639079717194.js" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;6dafd0200df677dd&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
+    <script defer="" src="/front/v652eace1692a40cfa3763df669d7439c1639079717194.js" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;6dafd0200df677dd&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
         crossorigin="anonymous"></script>
 
     <div id="the_notes"></div>

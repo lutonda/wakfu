@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lingua{% endblock %}
+
+{% block body %}
+    <h1>Lingua</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lingua.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ lingua.nome }}</td>
+            </tr>
+            <tr>
+                <th>Icon</th>
+                <td>{{ lingua.icon }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ lingua.code }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ lingua.created ? lingua.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{{ lingua.isactive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('lingua_index') }}">back to list</a>
+
+    <a href="{{ path('lingua_edit', {'id': lingua.id}) }}">edit</a>
+
+    {{ include('lingua/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Periodo{% endblock %}
+
+{% block body %}
+    <h1>Periodo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ periodo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ periodo.nome }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ periodo.code }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ periodo.created ? periodo.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{{ periodo.isactive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('periodo_index') }}">back to list</a>
+
+    <a href="{{ path('periodo_edit', {'id': periodo.id}) }}">edit</a>
+
+    {{ include('periodo/_delete_form.html.twig') }}
+{% endblock %}

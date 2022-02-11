@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pessoa index{% endblock %}
+
+{% block body %}
+    <h1>Pessoa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Linkedin</th>
+                <th>Titulo</th>
+                <th>Descricao</th>
+                <th>Imagem</th>
+                <th>Icon</th>
+                <th>Created</th>
+                <th>Isactive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pessoa in pessoas %}
+            <tr>
+                <td>{{ pessoa.id }}</td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.linkedin }}</td>
+                <td>{{ pessoa.titulo }}</td>
+                <td>{{ pessoa.descricao }}</td>
+                <td>{{ pessoa.imagem }}</td>
+                <td>{{ pessoa.icon }}</td>
+                <td>{{ pessoa.created ? pessoa.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ pessoa.isactive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('pessoa_show', {'id': pessoa.id}) }}">show</a>
+                    <a href="{{ path('pessoa_edit', {'id': pessoa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pessoa_new') }}">Create new</a>
+{% endblock %}
