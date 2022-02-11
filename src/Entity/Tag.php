@@ -6,19 +6,22 @@ use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $nome;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }

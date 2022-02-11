@@ -5,13 +5,15 @@ namespace App\Entity;
 use App\Repository\NoticiaRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: NoticiaRepository::class)]
 class Noticia
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
@@ -36,6 +38,10 @@ class Noticia
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
 
+    public function __construct()
+    {
+        $this->created=new   \DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;

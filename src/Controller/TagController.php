@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Lingua;
 use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
@@ -25,6 +26,19 @@ class TagController extends AbstractController
     #[Route('/new', name: 'tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+       foreach(['Russo',
+        'Português',
+        'Francês',
+        'Árabe',
+        'Latín',
+        'Inglês',
+        'Espanhol'] as $l){
+            $lang=new Lingua();
+            $lang->setNome($l)->setIcon(strtolower($l))->setCode(substr($l,0,));
+            $entityManager->persist($lang);
+        }
+        $entityManager->flush();
+
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);

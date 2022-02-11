@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\CursoRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: CursoRepository::class)]
 class Curso
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
@@ -58,12 +61,16 @@ class Curso
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->created=new   \DateTime();
+    }
+    public function getId()
     {
         return $this->id;
     }
@@ -176,14 +183,83 @@ class Curso
         return $this;
     }
 
-    public function getCoordenador(): ?Pessoa
+    public function getCoordenador()
     {
         return $this->coordenador;
     }
 
-    public function setCoordenador(?Pessoa $coordenador): self
+    public function setCoordenador($coordenador): self
     {
         $this->coordenador = $coordenador;
+
+        return $this;
+    }
+    
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon($icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+    public function getImagem(): ?string
+    {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem): self
+    {
+        $this->imagem = $imagem;
+
+        return $this;
+    }
+    
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode($code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    public function setTags($tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+    
+    public function getCreated():DateTime
+    {
+        return $this->created;
+    }
+    public function setcreated($created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+    
+    public function isActive():bool
+    {
+        return $this->isactive ? true : false;
+    }
+    public function setIsactive($isactive): self
+    {
+        $this->isactive = $isactive;
 
         return $this;
     }

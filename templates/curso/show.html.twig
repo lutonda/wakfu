@@ -1,66 +1,125 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Curso{% endblock %}
+{% block title %}Curso
+{% endblock %}
 
 {% block body %}
-    <h1>Curso</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ curso.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ curso.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Duracao</th>
-                <td>{{ curso.duracao }}</td>
-            </tr>
-            <tr>
-                <th>Apresentacao</th>
-                <td>{{ curso.apresentacao }}</td>
-            </tr>
-            <tr>
-                <th>Saida</th>
-                <td>{{ curso.saida }}</td>
-            </tr>
-            <tr>
-                <th>Condicoes</th>
-                <td>{{ curso.condicoes }}</td>
-            </tr>
-            <tr>
-                <th>Plano</th>
-                <td>{{ curso.plano }}</td>
-            </tr>
-            <tr>
-                <th>Icon</th>
-                <td>{{ curso.icon }}</td>
-            </tr>
-            <tr>
-                <th>Imagem</th>
-                <td>{{ curso.imagem }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ curso.code }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ curso.created ? curso.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Isactive</th>
-                <td>{{ curso.isactive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('curso_index') }}">back to list</a>
+	<section class="ftco-section">
+		<div class="container-xl">
+			<a href="{{ path('curso_index') }}" class="btn btn-default">
+				<i class="fa fa-chevron-left"></i>
+				Voltar aos cursos</a>
+			<div class="row justify-content-center">
 
-    <a href="{{ path('curso_edit', {'id': curso.id}) }}">edit</a>
+				<div class="col-md-12 col-lg-12 d-flex">
+					<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+						<div class="text">
+							
+							<span>
+								<i class="fa fa-clock me-1"></i>
+                                {{ curso.duracao }}
+								Semestres ({{ curso.duracao/2 }}
+								Anos)
+                            </span>
+							<span>
+								<i class="fa fa-globe me-1"></i>
+                                {{ curso.lingua|map((p,k) => "#{p.nome}")|join(', ') }}
+                                </span>
+							<span>
+								<a href="#">
+									<i class="fa fa-comment me-1"></i>
+									{{ curso.departamento.titulo }}
+                                    </a>
+							</span>
+						</p>
+						<div class="pull-right">
 
-    {{ include('curso/_delete_form.html.twig') }}
-{% endblock %}
+							<a href="{{ path('curso_edit', {'id': curso.id}) }}" class=" btn btn-primary">
+								<i class="fa fa-edit"></i>Editar</a>
+
+							{{ include('curso/_delete_form.html.twig') }}
+						</div>
+						<h3 class="heading mb-3">
+							Apresentação
+						</h3>
+						<p>{{ curso.apresentacao }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12 d-flex">
+				<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+					<div class="text">
+						<h3 class="heading mb-3">
+							Saida Profissional
+						</h3>
+						<p>{{ curso.saida }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12 d-flex">
+				<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+					<div class="text">
+						<h3 class="heading mb-3">
+							Condições de Acesso
+						</h3>
+						<p>{{ curso.condicoes }}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-lg-12 d-flex">
+				<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+					<div class="text">
+						<h3 class="heading mb-3">
+							Plano Curricular
+						</h3>
+						<p>{{ curso.plano }}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-3 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+				<div class="staff">
+					<div class="img" style="background-image:url(/images/team/{{curso.coordenador.imagem}})">
+						<ul class="ftco-social">
+							<li>
+								<a href="#">
+									<span class="fa fa-linkedin"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="text">
+						<h3>{{curso.coordenador.titulo}}
+							{{curso.coordenador.nome}}</h3>
+						<h5>Coordenador do Curso</h5>
+
+						<span class="">{{curso.coordenador.descricao|slice(0, 80)}}...</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-lg-3 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+				<h3 class="heading mb-3">Departamento</h3>
+				<p>{{ curso.departamento.titulo }}</p>
+				<h3 class="heading mb-3">Periodo</h3>
+				<p>{{ curso.periodo|map((p,k) => "#{p.nome}")|join(', ') }}</p>
+				<h3 class="heading mb-3">Linguas</h3>
+				<p>{{ curso.lingua|map((p,k) => "#{p.nome}")|join(', ') }}</p>
+			</div>
+			<div class="col-md-3 col-lg-3 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+				<h3 class="heading mb-3">Duração</h3>
+				<p>{{ curso.duracao }}
+					Semestres ({{ curso.duracao/2 }}
+					Anos)
+				</p>
+				<h3 class="heading mb-3">Palavras chaves</h3>
+				<p>{{ curso.tags|map((p,k) => "#{p.nome}")|join(', ') }}</p>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>{% endblock %}

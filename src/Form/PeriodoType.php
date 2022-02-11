@@ -14,7 +14,6 @@ class PeriodoType extends AbstractType
         $builder
             ->add('nome')
             ->add('code')
-            ->add('created')
             ->add('isactive')
         ;
     }

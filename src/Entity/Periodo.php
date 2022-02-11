@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\PeriodoRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: PeriodoRepository::class)]
 class Periodo
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
@@ -25,9 +28,13 @@ class Periodo
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->created=new   \DateTime();
+    }
+    public function getId()
     {
         return $this->id;
     }
@@ -44,14 +51,36 @@ class Periodo
         return $this;
     }
 
-    public function getCode(): ?int
+    public function getCode()
     {
         return $this->code;
     }
 
-    public function setCode(int $code): self
+    public function setCode($code): self
     {
         $this->code = $code;
+
+        return $this;
+    }
+    public function isIsactive(): ?bool
+    {
+        return $this->isactive;
+    }
+
+    public function setIsactive(int $isactive): self
+    {
+        $this->isactive = $isactive;
+
+        return $this;
+    }
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated(int $created): self
+    {
+        $this->created = $created;
 
         return $this;
     }

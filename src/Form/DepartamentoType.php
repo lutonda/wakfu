@@ -16,7 +16,6 @@ class DepartamentoType extends AbstractType
             ->add('code')
             ->add('imagem')
             ->add('icon')
-            ->add('created')
             ->add('isactive')
             ->add('pessoas')
         ;

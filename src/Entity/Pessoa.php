@@ -5,13 +5,15 @@ namespace App\Entity;
 use App\Repository\PessoaRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: PessoaRepository::class)]
 class Pessoa
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
@@ -31,18 +33,22 @@ class Pessoa
     private $imagem;
     
     #[ORM\Column(type: 'string')]
-    private $icon;
+    private $icon='user';
 
     #[ORM\Column(type: 'datetime', options:["default"=> "CURRENT_TIMESTAMP"])]
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
     
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->created=new   \DateTime();
+    }
+    public function getId()
     {
         return $this->id;
     }
@@ -91,6 +97,62 @@ class Pessoa
     public function setDescricao(string $descricao): self
     {
         $this->descricao = $descricao;
+
+        return $this;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function setTags( $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    public function setIcon($icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem): self
+    {
+        $this->imagem = $imagem;
+
+        return $this;
+    }
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+    public function isIsactive(): ?bool
+    {
+        return $this->isactive;
+    }
+
+    public function setIsactive(int $isactive): self
+    {
+        $this->isactive = $isactive;
 
         return $this;
     }

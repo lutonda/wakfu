@@ -15,7 +15,6 @@ class LinguaType extends AbstractType
             ->add('nome')
             ->add('icon')
             ->add('code')
-            ->add('created')
             ->add('isactive')
         ;
     }

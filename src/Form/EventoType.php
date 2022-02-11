@@ -17,7 +17,6 @@ class EventoType extends AbstractType
             ->add('data')
             ->add('imagem')
             ->add('code')
-            ->add('created')
             ->add('isactive')
             ->add('tags')
         ;

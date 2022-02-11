@@ -5,13 +5,15 @@ namespace App\Entity;
 use App\Repository\DepartamentoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: DepartamentoRepository::class)]
 class Departamento
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[Assert\Uuid]
     private $id;
 
@@ -34,9 +36,13 @@ class Departamento
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->created=new   \DateTime();
+    }
+    public function getId()
     {
         return $this->id;
     }
@@ -53,14 +59,71 @@ class Departamento
         return $this;
     }
 
-    public function getPessoas(): ?int
+    public function getPessoas()
     {
         return $this->pessoas;
     }
 
-    public function setPessoas(int $pessoas): self
+    public function setPessoas($pessoas): self
     {
         $this->pessoas = $pessoas;
+
+        return $this;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+    public function isIsactive(): ?bool
+    {
+        return $this->isactive;
+    }
+
+    public function setIsactive(int $isactive): self
+    {
+        $this->isactive = $isactive;
+
+        return $this;
+    }
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated(int $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    public function setIcon($icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem): self
+    {
+        $this->imagem = $imagem;
 
         return $this;
     }

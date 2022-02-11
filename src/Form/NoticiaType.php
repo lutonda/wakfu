@@ -16,7 +16,6 @@ class NoticiaType extends AbstractType
             ->add('categoria')
             ->add('text')
             ->add('code')
-            ->add('created')
             ->add('isactive')
             ->add('tags')
         ;

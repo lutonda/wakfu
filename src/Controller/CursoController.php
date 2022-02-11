@@ -19,6 +19,8 @@ class CursoController extends AbstractController
     {
         return $this->render('curso/index.html.twig', [
             'cursos' => $cursoRepository->findAll(),
+            'title'=>'CURSOS',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -39,6 +41,8 @@ class CursoController extends AbstractController
         return $this->renderForm('curso/new.html.twig', [
             'curso' => $curso,
             'form' => $form,
+            'title'=>'CURSOS',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -47,6 +51,8 @@ class CursoController extends AbstractController
     {
         return $this->render('curso/show.html.twig', [
             'curso' => $curso,
+            'title'=>$curso->getCode().':: '.$curso->getTitulo(),
+            'subtitle'=>'CURSOS'
         ]);
     }
 
@@ -65,6 +71,8 @@ class CursoController extends AbstractController
         return $this->renderForm('curso/edit.html.twig', [
             'curso' => $curso,
             'form' => $form,
+            'title'=>'CURSOS',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
