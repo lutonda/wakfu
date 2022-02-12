@@ -9,32 +9,37 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class HomeController extends AbstractController
+#[Route('/instituicional')]
+class InstituicionalController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'instituicional')]
     public function index(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
     {
         $cursos=$cursoRepository->findBy(['isactive'=>true]);
         $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
         
-        return $this->render('home/index.html.twig', [
+        return $this->render('instituicional/instituicional.html.twig', [
+
+            'title'=>'Instituicional',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+
 
             'controller_name' => 'HomeController',
             'cursos'=>$cursos,
             'departamentos'=>$departamentos
         ]);
     }
-    #[Route('/sobre', name: 'sobre')]
-    public function about(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
+    #[Route('/historia', name: 'historia')]
+    public function historia(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
     {
         $cursos=$cursoRepository->findBy(['isactive'=>true]);
         $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
         
-        return $this->render('home/sobre.html.twig', [
+        return $this->render('instituicional/historia.html.twig', [
 
             'controller_name' => 'HomeController',
             
-            'title'=>'Sobre Nós',
+            'title'=>'História',
             'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
 
             'cursos'=>$cursos,

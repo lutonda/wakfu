@@ -4,24 +4,21 @@ namespace App\Controller;
 
 use App\Repository\CursoRepository;
 use App\Repository\DepartamentoRepository;
+use App\Repository\TimeLineRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class HomeController extends AbstractController
+#[Route('/componentes')]
+class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
+    #[Route('/timeline', name: 'timeline')]
+    public function timeline(TimeLineRepository $timeLineRepository): Response
     {
-        $cursos=$cursoRepository->findBy(['isactive'=>true]);
-        $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
-        
-        return $this->render('home/index.html.twig', [
-
+        return $this->render('components/timeline.html.twig', [
+            'timelines'=>$timeLineRepository->findBy(['active'=>true],['ano'=>'ASC']),
             'controller_name' => 'HomeController',
-            'cursos'=>$cursos,
-            'departamentos'=>$departamentos
         ]);
     }
     #[Route('/sobre', name: 'sobre')]

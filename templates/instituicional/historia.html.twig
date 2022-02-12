@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Curso index
+{% endblock %}
+{% block stylesheet %}
+{% endblock %}
+
+{% block body %}
+
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<div class="row g-0" style="background:#ccc">
+							<div class="col-lg-6 order-lg-last">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<p>
+										Prezados,
+										É com imenso prazer que lhe damos as boas-vindas à nossa página que espelha, de forma sintéctica, as diferentes actividades da Escola Superior Pedagógica do Bengo (ESP-Bengo), sustentadas na inter-relação dialéctica dos quatros eixos fundamentais de toda universidade moderna: o ensino, investigação, extensão e gestão.
+										A missão e visão da ESP-Bengo, decorrentes das atribuições do seu Estatuto Orgânico, em conjugação com os valores que se preconizam como a responsabilidade social, o humanismo, participação  activa, a democracia, solidariedade, excelência, aprendizagem para a vida, racionalidade, cidadania, autonomia, a criatividade e inovação, entre outros, têm catapultado a  nossa instituição no diagnóstico e solução das diferentes situações problemáticas que enfermam o contexto no qual se encontra, com incidência a nível nacional e internacional.</p>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{{ render(controller('App\\Controller\\DefaultController::timeline')) }}
+		
+{% endblock %}

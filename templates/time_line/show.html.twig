@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TimeLine{% endblock %}
+
+{% block body %}
+    <h1>TimeLine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ time_line.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ time_line.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Ano</th>
+                <td>{{ time_line.ano }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ time_line.descricao }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ time_line.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ time_line.created ? time_line.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('time_line_index') }}">back to list</a>
+
+    <a href="{{ path('time_line_edit', {'id': time_line.id}) }}">edit</a>
+
+    {{ include('time_line/_delete_form.html.twig') }}
+{% endblock %}

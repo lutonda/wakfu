@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TimeLine index{% endblock %}
+
+{% block body %}
+    <h1>TimeLine index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Ano</th>
+                <th>Descricao</th>
+                <th>Active</th>
+                <th>Created</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for time_line in time_lines %}
+            <tr>
+                <td>{{ time_line.id }}</td>
+                <td>{{ time_line.titulo }}</td>
+                <td>{{ time_line.ano }}</td>
+                <td>{{ time_line.descricao }}</td>
+                <td>{{ time_line.active ? 'Yes' : 'No' }}</td>
+                <td>{{ time_line.created ? time_line.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('time_line_show', {'id': time_line.id}) }}">show</a>
+                    <a href="{{ path('time_line_edit', {'id': time_line.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('time_line_new') }}">Create new</a>
+{% endblock %}

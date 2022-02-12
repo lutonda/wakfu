@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/evento')]
+#[Route('/eventos')]
 class EventoController extends AbstractController
 {
     #[Route('/', name: 'evento_index', methods: ['GET'])]
@@ -19,6 +19,8 @@ class EventoController extends AbstractController
     {
         return $this->render('evento/index.html.twig', [
             'eventos' => $eventoRepository->findAll(),
+            'title'=>'CURSOS',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -39,6 +41,8 @@ class EventoController extends AbstractController
         return $this->renderForm('evento/new.html.twig', [
             'evento' => $evento,
             'form' => $form,
+            'title'=>'CURSOS',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
