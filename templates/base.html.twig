@@ -37,6 +37,15 @@
     font-weight: normal !important;
     text-transform: none !important;
 }
+        
+            .hidden{
+                display: none
+            }
+            a.nav-link:hover, a.nav-link.active {
+                border-bottom: solid 5px #39f;                        
+                background: rgba(255,255,255,.8)
+            }
+        
     </style>
     <script type="text/javascript" async="" src="/front/analytics.js"></script>
     <script defer="" src="/front/js.js"></script>
@@ -85,8 +94,8 @@ ISP-BENGO
                     <div class="con d-flex">
                         <div class="icon"><span class="flaticon-clock"></span></div>
                         <div class="text">
-                            <span>Monday - Friday</span>
-                            <strong>8:00AM-8:00PM</strong>
+                            <span>Segunda a Sexta</span>
+                            <strong>8:00 as 15:00</strong>
                         </div>
                     </div>
                 </div>
@@ -94,8 +103,8 @@ ISP-BENGO
                     <div class="con d-flex">
                         <div class="icon"><span class="flaticon-telephone"></span></div>
                         <div class="text">
-                            <span>Call Us</span>
-                            <strong>+2 392 3929 210</strong>
+                            <span>Fale connosco</span>
+                            <strong>+244 922 00 00 00</strong>
                         </div>
                     </div>
                 </div>
@@ -121,13 +130,13 @@ ISP-BENGO
 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="{{ path('home') }}">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Cursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Instituicional</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('evento_index') }}">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('noticia_index') }}">Noticias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('curso_index') }}">Contactos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('home') }}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link {{'curso' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('curso_index') }}">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link {{'instituicional' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('curso_index') }}">Instituicional</a></li>
+                    <li class="nav-item"><a class="nav-link {{'sobre' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('curso_index') }}">Team</a></li>
+                    <li class="nav-item"><a class="nav-link {{'eventos' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('evento_index') }}">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link {{'noticias' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('noticia_index') }}">Noticias</a></li>
+                    <li class="nav-item"><a class="nav-link {{'contactos' in app.request.attributes.get('_route') ? 'active' : '' }}" href="{{ path('contactos') }}">Contactos</a></li>
                 </ul>
             </div>
         </div>

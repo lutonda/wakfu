@@ -38,6 +38,9 @@ class Departamento
     #[ORM\Column(type:'boolean')]
     protected $isactive=true;  
 
+    #[ORM\OneToMany(targetEntity:'Curso', mappedBy:'departamento')]
+    protected $cursos;  
+
     public function __construct()
     {
         $this->created=new   \DateTime();
@@ -124,6 +127,17 @@ class Departamento
     public function setImagem($imagem): self
     {
         $this->imagem = $imagem;
+
+        return $this;
+    }
+    public function getCursos()
+    {
+        return $this->cursos;
+    }
+
+    public function setCursos($cursos): self
+    {
+        $this->cursos = $cursos;
 
         return $this;
     }

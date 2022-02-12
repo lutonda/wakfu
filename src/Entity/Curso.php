@@ -27,6 +27,15 @@ class Curso
     #[ORM\Column(type: 'integer')]
     private $duracao;
 
+    #[ORM\Column(type: 'integer')]
+    private $vagas=10;
+
+    #[ORM\Column(type: 'integer')]
+    private $turmas=1;
+
+    #[ORM\Column(type: 'integer')]
+    private $pontos=1;
+
     #[ORM\ManyToMany(targetEntity: 'Periodo')]
     private $periodo;
 
@@ -107,6 +116,42 @@ class Curso
     public function setDuracao(int $duracao): self
     {
         $this->duracao = $duracao;
+
+        return $this;
+    }
+
+    public function getVagas(): ?int
+    {
+        return $this->vagas;
+    }
+
+    public function setVagas(int $vagas): self
+    {
+        $this->vagas = $vagas;
+
+        return $this;
+    }
+
+    public function getTurmas(): ?int
+    {
+        return $this->turmas;
+    }
+
+    public function setTurmas(int $turmas): self
+    {
+        $this->turmas = $turmas;
+
+        return $this;
+    }
+
+    public function getPontos(): ?int
+    {
+        return $this->pontos;
+    }
+
+    public function setPontos(int $pontos): self
+    {
+        $this->pontos = $pontos;
 
         return $this;
     }
