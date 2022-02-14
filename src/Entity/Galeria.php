@@ -18,7 +18,7 @@ class Galeria
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $titulo;
+    private $titulo='x';
 
     #[ORM\Column(type: 'string', length: 255)]
     private $imagem;
@@ -33,7 +33,7 @@ class Galeria
     {
         $this->created=new   \DateTime();
     }
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -74,7 +74,7 @@ class Galeria
         return $this;
     }
 
-    public function getTags(): ?string
+    public function getTags()
     {
         return $this->tags;
     }

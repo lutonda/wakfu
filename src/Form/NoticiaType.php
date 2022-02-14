@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Noticia;
+use App\Entity\Tag;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,11 +15,13 @@ class NoticiaType extends AbstractType
     {
         $builder
             ->add('titulo')
-            ->add('categoria')
             ->add('text')
-            ->add('code')
             ->add('isactive')
-            ->add('tags')
+            
+            ->add('tags',EntityType::class, array(
+                'class' => Tag::class,
+                'multiple' => true,
+                'choice_label' => 'nome'))
         ;
     }
 

@@ -15,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class TimeLineController extends AbstractController
 {
     #[Route('/', name: 'time_line_index', methods: ['GET'])]
-    public function index(TimeLineRepository $timeLineRepository): Response
+    public function index(TimeLineRepository $timeLineRepository, Request $request): Response
     {
         return $this->render('time_line/index.html.twig', [
             'title'=>'CURSOS',
+		    'admin'=>!!($request->get('admin') ?? false) ,
             'subtitle'=>'Nossa variedade de Cursos',
             'time_lines' => $timeLineRepository->findAll(),
         ]);

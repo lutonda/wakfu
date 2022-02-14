@@ -19,41 +19,45 @@ class GaleriaController extends AbstractController
     {
         return $this->render('galeria/index.html.twig', [
             'galerias' => $galeriaRepository->findAll(),
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
     #[Route('/new', name: 'galeria_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $galerium = new Galeria();
-        $form = $this->createForm(GaleriaType::class, $galerium);
+        $galeria = new Galeria();
+        $form = $this->createForm(GaleriaType::class, $galeria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($galerium);
+            $entityManager->persist($galeria);
             $entityManager->flush();
 
             return $this->redirectToRoute('galeria_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('galeria/new.html.twig', [
-            'galerium' => $galerium,
+            'galeria' => $galeria,
             'form' => $form,
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
     #[Route('/{id}', name: 'galeria_show', methods: ['GET'])]
-    public function show(Galeria $galerium): Response
+    public function show(Galeria $galeria): Response
     {
         return $this->render('galeria/show.html.twig', [
-            'galerium' => $galerium,
+            'galeria' => $galeria,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'galeria_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Galeria $galerium, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Galeria $galeria, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(GaleriaType::class, $galerium);
+        $form = $this->createForm(GaleriaType::class, $galeria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,16 +67,16 @@ class GaleriaController extends AbstractController
         }
 
         return $this->renderForm('galeria/edit.html.twig', [
-            'galerium' => $galerium,
+            'galeria' => $galeria,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'galeria_delete', methods: ['POST'])]
-    public function delete(Request $request, Galeria $galerium, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Galeria $galeria, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$galerium->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($galerium);
+        if ($this->isCsrfTokenValid('delete'.$galeria->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($galeria);
             $entityManager->flush();
         }
 

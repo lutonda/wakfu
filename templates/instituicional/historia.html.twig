@@ -28,6 +28,6 @@
 			</div>
 		</div>
 	</section>
-	{{ render(controller('App\\Controller\\DefaultController::timeline')) }}
+	{{ render(controller('App\\Controller\\DefaultController::timeline',{admin:admin})) }}
 		
 {% endblock %}

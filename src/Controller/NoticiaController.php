@@ -19,7 +19,7 @@ class NoticiaController extends AbstractController
     {
         return $this->render('noticia/index.html.twig', [
             'noticias' => $noticiaRepository->findAll(),
-            'title'=>'CURSOS',
+            'title'=>'Noticias',
             'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
@@ -41,6 +41,16 @@ class NoticiaController extends AbstractController
         return $this->renderForm('noticia/new.html.twig', [
             'noticium' => $noticium,
             'form' => $form,
+            'title'=>'Notícias',
+            'subtitle'=>'Nossa variedade de Cursos'
+        ]);
+    }
+    
+    #[Route('/lite', name: 'noticia_index_lite', methods: ['GET', 'POST'])]
+    public function lite(NoticiaRepository $noticiaRepository): Response
+    {
+        return $this->render('noticia/lite.html.twig', [
+            'noticias' => $noticiaRepository->findAll()
         ]);
     }
 

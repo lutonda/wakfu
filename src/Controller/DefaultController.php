@@ -6,6 +6,7 @@ use App\Repository\CursoRepository;
 use App\Repository\DepartamentoRepository;
 use App\Repository\TimeLineRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,9 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/timeline', name: 'timeline')]
-    public function timeline(TimeLineRepository $timeLineRepository): Response
+    public function timeline(TimeLineRepository $timeLineRepository, Request $request): Response
     {
         return $this->render('components/timeline.html.twig', [
+		    'admin'=>$request->get('admin') ,
             'timelines'=>$timeLineRepository->findBy(['active'=>true],['ano'=>'ASC']),
             'controller_name' => 'HomeController',
         ]);

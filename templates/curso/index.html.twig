@@ -10,7 +10,9 @@
                 <div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                     <span class="subheading">Cursos</span>
                     <h2 class="mb-4">Nossos Cursos</h2>
+                    {% if admin %}
                     <a href="{{ path('curso_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create new</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="row g-lg-2 justify-content-center">

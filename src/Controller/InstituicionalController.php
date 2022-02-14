@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/instituicional')]
 class InstituicionalController extends AbstractController
 {
-    #[Route('/', name: 'instituicional')]
+    #[Route('/', name: 'instituicional_index')]
     public function index(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
     {
         $cursos=$cursoRepository->findBy(['isactive'=>true]);

@@ -1,50 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evento{% endblock %}
+{% block title %}Evento
+{% endblock %}
 
 {% block body %}
-    <h1>Evento</h1>
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+				<h4 class="heading mb-3">#{{evento.code|slice(0,4)|upper}}</h4>
+				<h1>{{evento.titulo}}</h1>
+				<div class="col-md-12 col-lg-12 d-flex">
+					<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+						<div class="text">
+							<span>
+								<i class="fa fa-clock-o me-1"></i>
+								{{evento.data|date('H:m')}}
+							</span>
+							<span>
+								<i class="fa fa-calendar me-1"></i>
+								{{evento.data|date('d M Y')}}
+							</span>
+							<span>
+								<a href="#">
+									<i class="fa fa-comment me-1"></i>
+									0 Comentarios
+								</a>
+							</span>
+							<span>|</span>
+							<span>
+								<i class="fa fa-calendar-o me-1"></i>
+								{{evento.created|date('d M Y')}}
+							</span>
+                            {% if admin %}
+							<span>
+								<a href="{{ path('evento_edit', {'id': evento.id}) }}" class="btn btn-primary pull-right">
+                                <i class="fa fa-edit"></i>
+                                Edit</a>
+							</span>
+                            <span class="pull-right">
+							{{ include('evento/_delete_form.html.twig') }}
+                            </span>
+                            {% endif %}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row g-0" style="background:#ccc">
+						<div class="col-lg-6 order-lg-last">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<p>{{evento.texto}}
+								</p>
+							</div>
+						</div>
+					</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ evento.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ evento.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Texto</th>
-                <td>{{ evento.texto }}</td>
-            </tr>
-            <tr>
-                <th>Data</th>
-                <td>{{ evento.data ? evento.data|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Imagem</th>
-                <td>{{ evento.imagem }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ evento.code }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ evento.created ? evento.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Isactive</th>
-                <td>{{ evento.isactive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('evento_index') }}">back to list</a>
-
-    <a href="{{ path('evento_edit', {'id': evento.id}) }}">edit</a>
-
-    {{ include('evento/_delete_form.html.twig') }}
-{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

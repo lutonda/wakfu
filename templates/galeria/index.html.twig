@@ -1,39 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galeria index{% endblock %}
+{% block title %}Galeria index
+{% endblock %}
 
 {% block body %}
-    <h1>Galeria index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Imagem</th>
-                <th>Descricao</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for galerium in galerias %}
-            <tr>
-                <td>{{ galerium.id }}</td>
-                <td>{{ galerium.titulo }}</td>
-                <td>{{ galerium.imagem }}</td>
-                <td>{{ galerium.descricao }}</td>
-                <td>
-                    <a href="{{ path('galeria_show', {'id': galerium.id}) }}">show</a>
-                    <a href="{{ path('galeria_edit', {'id': galerium.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('galeria_new') }}">Create new</a>
+	<section class="ftco-section bg-light ftco-no-pt">
+		<div class="container-xl">
+			<div class="row justify-content-center">
+				<div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+					{% if admin %}
+						<a href="{{ path('galeria_new') }}" class="btn btn-primary">
+							<i class="fa fa-plus"></i>
+							Create new</a>
+					{% endif %}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				{% for galeria in galerias %}
+					<div class="col-md-6 col-lg-4 d-flex">
+						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+							<a href="{{path('galeria_show', {'id': galeria.id})}}" class="block-20 img" style="background-image:url(images/{{ galeria.imagem }}); background: #eee"></a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 {% endblock %}

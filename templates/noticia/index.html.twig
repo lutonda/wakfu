@@ -1,45 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Noticia index{% endblock %}
+{% block title %}Noticia index
+{% endblock %}
 
 {% block body %}
-    <h1>Noticia index</h1>
+	<section class="ftco-section">
+		<div class="container-xl">
+			{% if admin %}
+				<div class="row justify-content-center">
+					<div class="col-md-12 text-center">
+						<a href="{{ path('noticia_new') }}" class="btn btn-primary">Create new</a>
+					</div>
+				</div>
+			{% endif %}
+			<div class="row justify-content-center">
+				{% for noticia in noticias %}
+					<div class="col-md-6 col-lg-4 d-flex">
+						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+							<a href="blog-single.html" class="block-20 img" style="background-image:url(images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)"></a>
+							<div class="text">
+								<p class="meta">
+									<span>
+										<i class="fa fa-user me-1"></i>Admin</span>
+									<span>
+										<i class="fa fa-calendar me-1"></i>
+										{{ noticia.created|date('d M Y')}}</span>
+									<span>
+										<a href="#">
+											<i class="fa fa-comment me-1"></i>
+											0 Comments</a>
+									</span>
+								</p>
+								<h3 class="heading mb-3">
+									<a href="#">{{noticia.titulo}}</a>
+								</h3>
+								<p>{{ noticia.text|slice(0,100) }}</p>
+                                <a href="{{path('noticia_show', {'id': noticia.id})}}" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Ler</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Categoria</th>
-                <th>Text</th>
-                <th>Code</th>
-                <th>Created</th>
-                <th>Isactive</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for noticium in noticias %}
-            <tr>
-                <td>{{ noticium.id }}</td>
-                <td>{{ noticium.titulo }}</td>
-                <td>{{ noticium.categoria }}</td>
-                <td>{{ noticium.text }}</td>
-                <td>{{ noticium.code }}</td>
-                <td>{{ noticium.created ? noticium.created|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ noticium.isactive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('noticia_show', {'id': noticium.id}) }}">show</a>
-                    <a href="{{ path('noticia_edit', {'id': noticium.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('noticia_new') }}">Create new</a>
 {% endblock %}

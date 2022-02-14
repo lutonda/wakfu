@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EventoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
@@ -36,7 +37,7 @@ class Evento
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
@@ -44,8 +45,9 @@ class Evento
     public function __construct()
     {
         $this->created=new   \DateTime();
+        $this->code=Uuid::uuid4();
     }
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -62,6 +64,42 @@ class Evento
         return $this;
     }
 
+    public function getTexto(): ?string
+    {
+        return $this->texto;
+    }
+
+    public function setTexto(string $texto): self
+    {
+        $this->texto = $texto;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getImagem(): ?string
+    {
+        return $this->imagem;
+    }
+
+    public function setImagem(string $imagem): self
+    {
+        $this->imagem = $imagem;
+
+        return $this;
+    }
+
     public function getData(): ?\DateTimeInterface
     {
         return $this->data;
@@ -70,6 +108,42 @@ class Evento
     public function setData(\DateTimeInterface $data): self
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function setTags($tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function IsIsactive()
+    {
+        return $this->isactive;
+    }
+
+    public function setIsactive($isactive): self
+    {
+        $this->isactive = $isactive;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\NoticiaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
@@ -21,7 +22,7 @@ class Noticia
     private $titulo;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $categoria;
+    private $categoria='x';
 
     #[ORM\Column(type: 'text')]
     private $text;
@@ -33,7 +34,7 @@ class Noticia
     protected $created;  
 
     #[ORM\Column(type:'boolean')]
-    protected $isactive;  
+    protected $isactive=true;  
 
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
@@ -41,8 +42,10 @@ class Noticia
     public function __construct()
     {
         $this->created=new   \DateTime();
+        $this->code=Uuid::uuid4();
     }
-    public function getId(): ?int
+
+    public function getId()
     {
         return $this->id;
     }
@@ -79,6 +82,54 @@ class Noticia
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function setTags($tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function isIsactive()
+    {
+        return $this->isactive;
+    }
+
+    public function setIsactive($isactive): self
+    {
+        $this->isactive = $isactive;
+
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created): self
+    {
+        $this->created = $created;
 
         return $this;
     }

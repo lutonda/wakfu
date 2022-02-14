@@ -1,3 +1,4 @@
+{% set admin = true %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +7,7 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<title>Academia - Free Bootstrap 5 Template by Colorlib</title>
+		
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -107,7 +108,7 @@ t.parentNode.insertBefore(z, t)
 	</head>
 	<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" data-new-gr-c-s-check-loaded="14.1047.0" data-gr-ext-installed="">
 		{% include "components/header.html.twig" %}
-		<section class="hero-wrap" style="background-image:url(/images/xbg_1.jpg.pagespeed.ic.Qvddt6BzWR.webp)">
+		<section class="hero-wrap" style="background-image:url({% block coverUrl %}/images/xbg_1.jpg.pagespeed.ic.Qvddt6BzWR.webp{% endblock %})">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text align-items-center">

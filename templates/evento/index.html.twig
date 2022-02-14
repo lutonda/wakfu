@@ -1,47 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evento index{% endblock %}
+{% block title %}Evento index
+{% endblock %}
 
 {% block body %}
-    <h1>Evento index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Texto</th>
-                <th>Data</th>
-                <th>Imagem</th>
-                <th>Code</th>
-                <th>Created</th>
-                <th>Isactive</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evento in eventos %}
-            <tr>
-                <td>{{ evento.id }}</td>
-                <td>{{ evento.titulo }}</td>
-                <td>{{ evento.texto }}</td>
-                <td>{{ evento.data ? evento.data|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evento.imagem }}</td>
-                <td>{{ evento.code }}</td>
-                <td>{{ evento.created ? evento.created|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evento.isactive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('evento_show', {'id': evento.id}) }}">show</a>
-                    <a href="{{ path('evento_edit', {'id': evento.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<section class="ftco-section bg-light ftco-no-pt">
+		<div class="container-xl">
+			<div class="row justify-content-center">
+				<div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+					{% if true %}
+						<a href="{{ path('evento_new') }}" class="btn btn-primary">
+							<i class="fa fa-plus"></i>
+							Create new</a>
+					{% endif %}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				{% for evento in eventos %}
+					<div class="col-md-6 col-lg-4 d-flex">
+						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+							<a href="{{path('evento_show', {'id': evento.id})}}" class="block-20 img" style="background-image:url(images/{{ evento.imagem }}); background: #eee"></a>
+							<div class="text">
+								<p class="meta">
+									<span>
+										<i class="fa fa-clock-o me-1"></i>
+										{{evento.data|date('H:m')}}</span>
+									<span>
+										<i class="fa fa-calendar me-1"></i>
+										{{evento.data|date('d M Y')}}
+									</span>
+									<span>
+										<a href="#">
+											<i class="fa fa-comment me-1"></i>
+											0 Comentarios
+										</a>
+									</span>
+                                    <span>
+										#{{evento.code|slice(0, 4)}}
+									</span>
+								</p>
+								<h3 class="heading mb-3">
+									<a href="#">{{ evento.titulo }}</a>
+								</h3>
+								<a href="{{path('evento_show', {'id': evento.id})}}" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Ver</a>
+							</div>
+						</div>
+					</div>
 
-    <a href="{{ path('evento_new') }}">Create new</a>
+				{% endfor %}
+
+			</div>
+		</div>
+	</section>
 {% endblock %}
