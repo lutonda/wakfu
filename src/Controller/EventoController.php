@@ -108,7 +108,8 @@ class EventoController extends AbstractController
                 $evento->setImagem($newFilename);
             }
             if($entityManager->flush()){
-                unlink($this->getParameter('uploads_directory').'Evento/'.$oldFileName);
+                if($oldFileName!==$evento->getImagem())
+                    unlink($this->getParameter('uploads_directory').'Evento/'.$oldFileName);
             }
             return $this->redirectToRoute('evento_index', [], Response::HTTP_SEE_OTHER);
         }

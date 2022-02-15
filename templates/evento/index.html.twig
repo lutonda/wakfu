@@ -20,7 +20,7 @@
 				{% for evento in eventos %}
 					<div class="col-md-6 col-lg-4 d-flex">
 						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-							<a href="{{path('evento_show', {'id': evento.id})}}" class="block-20 img" style="background-image:url(images/{{ evento.imagem }}); background: #eee"></a>
+							<a href="{{path('evento_show', {'id': evento.id})}}" class="block-20 img" style="background-image:url(/images/uploads/Evento/{{ evento.imagem }})"></a>
 							<div class="text">
 								<p class="meta">
 									<span>

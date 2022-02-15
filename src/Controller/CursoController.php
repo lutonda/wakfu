@@ -110,7 +110,8 @@ class CursoController extends AbstractController
                 $curso->setImagem($newFilename);
             }
             if($entityManager->flush()){
-                unlink($this->getParameter('uploads_directory').'Curso/'.$oldFileName);
+                if($oldFileName!==$curso->getImagem())
+                    unlink($this->getParameter('uploads_directory').'Curso/'.$oldFileName);
             }
 
             return $this->redirectToRoute('curso_index', [], Response::HTTP_SEE_OTHER);
