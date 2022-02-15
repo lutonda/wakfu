@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Instituicional{% endblock %}
+
+{% block body %}
+    <h1>Instituicional</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ instituicional.id }}</td>
+            </tr>
+            <tr>
+                <th>Mensagem</th>
+                <td>{{ instituicional.mensagem }}</td>
+            </tr>
+            <tr>
+                <th>Ensino</th>
+                <td>{{ instituicional.ensino }}</td>
+            </tr>
+            <tr>
+                <th>Investigacao</th>
+                <td>{{ instituicional.investigacao }}</td>
+            </tr>
+            <tr>
+                <th>Extensao</th>
+                <td>{{ instituicional.extensao }}</td>
+            </tr>
+            <tr>
+                <th>ImagemA</th>
+                <td>{{ instituicional.imagemA }}</td>
+            </tr>
+            <tr>
+                <th>ImagemB</th>
+                <td>{{ instituicional.imagemB }}</td>
+            </tr>
+            <tr>
+                <th>ImagemC</th>
+                <td>{{ instituicional.imagemC }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('instituicionais_index') }}">back to list</a>
+
+    <a href="{{ path('instituicionais_edit', {'id': instituicional.id}) }}">edit</a>
+
+    {{ include('instituicionais/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Instituicional{% endblock %}
+
+{% block body %}
+    <h1>Create new Instituicional</h1>
+
+    {{ include('instituicionais/_form.html.twig') }}
+
+    <a href="{{ path('instituicionais_index') }}">back to list</a>
+{% endblock %}

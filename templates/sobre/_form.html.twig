@@ -1,0 +1,35 @@
+
+<section class="ftco-section bg-light ftco-no-pt">
+	<div class="container-xl">
+		<div class="row justify-content-center">
+			<div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+				
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<button class="btn">{{ button_label|default('Save') }}</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</section>
+
+
+{% block javascript %}
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+<script>
+
+
+	var editor1cfg = {}
+	editor1cfg.toolbar = "basic";
+	var editor1 = new RichTextEditor("#sobre_sobre", editor1cfg);
+	var editor2 = new RichTextEditor("#sobre_missao", editor1cfg);
+	var editor3 = new RichTextEditor("#sobre_visao", editor1cfg);
+	var editor4 = new RichTextEditor("#sobre_historia", editor1cfg);
+</script>
+{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+{% endblock %}

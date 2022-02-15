@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sobre index{% endblock %}
+
+{% block body %}
+    <h1>Sobre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sobre</th>
+                <th>Missao</th>
+                <th>Visao</th>
+                <th>Historia</th>
+                <th>Mensagem</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sobre in sobres %}
+            <tr>
+                <td>{{ sobre.id }}</td>
+                <td>{{ sobre.sobre }}</td>
+                <td>{{ sobre.missao }}</td>
+                <td>{{ sobre.visao }}</td>
+                <td>{{ sobre.historia }}</td>
+                <td>{{ sobre.mensagem }}</td>
+                <td>
+                    <a href="{{ path('sobre_show', {'id': sobre.id}) }}">show</a>
+                    <a href="{{ path('sobre_edit', {'id': sobre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sobre_new') }}">Create new</a>
+{% endblock %}

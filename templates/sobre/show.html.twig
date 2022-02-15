@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block body %}
+    <h1>Sobre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sobre.id }}</td>
+            </tr>
+            <tr>
+                <th>Sobre</th>
+                <td>{{ sobre.sobre }}</td>
+            </tr>
+            <tr>
+                <th>Missao</th>
+                <td>{{ sobre.missao }}</td>
+            </tr>
+            <tr>
+                <th>Visao</th>
+                <td>{{ sobre.visao }}</td>
+            </tr>
+            <tr>
+                <th>Historia</th>
+                <td>{{ sobre.historia }}</td>
+            </tr>
+            <tr>
+                <th>Mensagem</th>
+                <td>{{ sobre.mensagem }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sobre_index') }}">back to list</a>
+
+    <a href="{{ path('sobre_edit', {'id': sobre.id}) }}">edit</a>
+
+    {{ include('sobre/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Contato{% endblock %}
+
+{% block body %}
+    <h1>Create new Contato</h1>
+
+    {{ include('contato/_form.html.twig') }}
+
+    <a href="{{ path('contato_index') }}">back to list</a>
+{% endblock %}

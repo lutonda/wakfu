@@ -17,6 +17,9 @@ class Departamento
     #[Assert\Uuid]
     private $id;
 
+    #[ORM\Column(type: 'string', nullable:true, length: 255)]
+    private $texto;
+
     #[ORM\Column(type: 'string', length: 255)]
     private $titulo;
 
@@ -58,6 +61,18 @@ class Departamento
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    public function getTexto(): ?string
+    {
+        return $this->texto;
+    }
+
+    public function setTexto(string $texto): self
+    {
+        $this->texto = $texto;
 
         return $this;
     }

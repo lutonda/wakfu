@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Instituicional index{% endblock %}
+
+{% block body %}
+    <h1>Instituicional index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mensagem</th>
+                <th>Ensino</th>
+                <th>Investigacao</th>
+                <th>Extensao</th>
+                <th>ImagemA</th>
+                <th>ImagemB</th>
+                <th>ImagemC</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instituicional in instituicionals %}
+            <tr>
+                <td>{{ instituicional.id }}</td>
+                <td>{{ instituicional.mensagem }}</td>
+                <td>{{ instituicional.ensino }}</td>
+                <td>{{ instituicional.investigacao }}</td>
+                <td>{{ instituicional.extensao }}</td>
+                <td>{{ instituicional.imagemA }}</td>
+                <td>{{ instituicional.imagemB }}</td>
+                <td>{{ instituicional.imagemC }}</td>
+                <td>
+                    <a href="{{ path('instituicionais_show', {'id': instituicional.id}) }}">show</a>
+                    <a href="{{ path('instituicionais_edit', {'id': instituicional.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('instituicionais_new') }}">Create new</a>
+{% endblock %}

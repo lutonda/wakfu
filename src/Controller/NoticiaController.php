@@ -50,7 +50,9 @@ class NoticiaController extends AbstractController
     public function lite(NoticiaRepository $noticiaRepository): Response
     {
         return $this->render('noticia/lite.html.twig', [
-            'noticias' => $noticiaRepository->findAll()
+            'noticias' => $noticiaRepository->findAll(),
+            'title'=>'Notícias',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -59,6 +61,8 @@ class NoticiaController extends AbstractController
     {
         return $this->render('noticia/show.html.twig', [
             'noticium' => $noticium,
+            'title'=>'Notícias',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -77,6 +81,8 @@ class NoticiaController extends AbstractController
         return $this->renderForm('noticia/edit.html.twig', [
             'noticium' => $noticium,
             'form' => $form,
+            'title'=>'Notícias',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 

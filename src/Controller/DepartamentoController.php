@@ -19,6 +19,8 @@ class DepartamentoController extends AbstractController
     {
         return $this->render('departamento/index.html.twig', [
             'departamentos' => $departamentoRepository->findAll(),
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -39,6 +41,8 @@ class DepartamentoController extends AbstractController
         return $this->renderForm('departamento/new.html.twig', [
             'departamento' => $departamento,
             'form' => $form,
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -47,6 +51,8 @@ class DepartamentoController extends AbstractController
     {
         return $this->render('departamento/show.html.twig', [
             'departamento' => $departamento,
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 
@@ -65,6 +71,8 @@ class DepartamentoController extends AbstractController
         return $this->renderForm('departamento/edit.html.twig', [
             'departamento' => $departamento,
             'form' => $form,
+            'title'=>'Galeria de fotos',
+            'subtitle'=>'Nossa variedade de Cursos'
         ]);
     }
 

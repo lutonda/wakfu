@@ -1,0 +1,49 @@
+{% for contato in contatos %}
+	{% if contato.isactive %}
+		<p class="mb-4" style="margin-bottom: 0 !important">{{ contato.nome }}
+			{%if admin %}
+				<a href="{{ path('contato_edit', {'id': contato.id}) }}">
+					<i class="fa fa-edit"></i>
+				</a>
+                
+                {{ include('contato/_delete_form.html.twig') }}
+			{% endif %}
+		</p>
+		<div class="row mb-4">
+			<div class="col-md-4">
+				<div class="dbox w-100 d-flex align-items-start">
+					<div class="text">
+						<p>
+							<span>Endereço:</span>
+							{{ contato.endereco }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="dbox w-100 d-flex align-items-start">
+					<div class="text">
+						<p>
+							<span>Email:</span>
+							<a href="mailto:{{ contato.email }}">{{ contato.email }}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="dbox w-100 d-flex align-items-start">
+					<div class="text">
+						<p>
+							<span>Phone:</span>
+							<a href="tel://{{ contato.telefone|split(',')[0] }}">{{ contato.telefone }}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endfor %}
+{%if admin %}
+	<a href="{{ path('contato_new') }}" class="btn btn-primary">
+		<i class="fa fa-plus"></i>
+		Create new</a>
+{% endif %}

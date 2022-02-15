@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contato index{% endblock %}
+
+{% block body %}
+    <h1>Contato index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Endereco</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Created</th>
+                <th>Isactive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contato in contatos %}
+            <tr>
+                <td>{{ contato.id }}</td>
+                <td>{{ contato.nome }}</td>
+                <td>{{ contato.endereco }}</td>
+                <td>{{ contato.email }}</td>
+                <td>{{ contato.telefone }}</td>
+                <td>{{ contato.created ? contato.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contato.isactive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('contato_show', {'id': contato.id}) }}">show</a>
+                    <a href="{{ path('contato_edit', {'id': contato.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('contato_new') }}">Create new</a>
+{% endblock %}
