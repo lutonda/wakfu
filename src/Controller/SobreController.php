@@ -67,7 +67,7 @@ class SobreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('sobre_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('sobre', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('sobre/edit.html.twig', [
@@ -83,7 +83,7 @@ class SobreController extends AbstractController
     public function delete(Request $request, Sobre $sobre, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$sobre->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($sobre);
+          //  $entityManager->remove($sobre);
             $entityManager->flush();
         }
 

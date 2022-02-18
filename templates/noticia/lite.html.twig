@@ -1,6 +1,6 @@
-{% for noticia in notivias %}
+{% for noticia in noticias|slice(0,4) %}
 <div class="block-21 mb-4 d-flex">
-	<a class="blog-img img rounded" style="background-image:url(images/ximage_4.jpg.pagespeed.ic.maJrh0w-s2.webp)"></a>
+	<a class="blog-img img rounded" style="background-image:url(images/uploads/Noticia/{{noticia.imagem}})"></a>
 	<div class="text">
 		<div class="meta">
 			<div>
@@ -9,9 +9,9 @@
 					{{noticia.created|date("d M Y")}}</a>
 			</div>
 		</div>
-		<h3 class="heading">
-			<a href="{{path('noticia_show', {'id': noticia.id})}}">{{noticia.titulo}}</a>
-		</h3>
+		<h4 class="heading">
+			<a href="{{path('noticia_show', {'id': noticia.id})}}">{{noticia.titulo|slice(0,20)}}</a>
+		</h4>
 	</div>
 </div>
 {% endfor %}

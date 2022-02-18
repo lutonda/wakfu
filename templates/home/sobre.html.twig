@@ -8,6 +8,14 @@
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row no-gutters justify-content-center">
+			
+			{% if admin %}
+				<div class="row justify-content-center">
+					<div class="col-md-12 text-center">
+						<a href="{{ path('sobre_edit',{id:sobre.id}) }}" class="btn btn-primary">Editar</a>
+					</div>
+				</div>
+			{% endif %}
 				<div class="col-md-12">
 					<div class="wrapper">
 						<div class="row g-0" style="background:#ccc">

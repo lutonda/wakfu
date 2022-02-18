@@ -7,6 +7,7 @@ use App\Form\InstituicionalType;
 use App\Repository\InstituicionalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +20,9 @@ class InstituicionaisController extends AbstractController
     {
         return $this->render('instituicionais/index.html.twig', [
             'instituicionals' => $instituicionalRepository->findAll(),
+            'title'=>'Instituicional',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+
         ]);
     }
 
@@ -30,15 +34,22 @@ class InstituicionaisController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $instituicional->setImagemA($this->createImage($form->get('imagemA')->getData()));
+            $instituicional->setImagemB($this->createImage($form->get('imagemB')->getData()));
+            $instituicional->setImagemC($this->createImage($form->get('imagemC')->getData()));
+        
             $entityManager->persist($instituicional);
             $entityManager->flush();
 
-            return $this->redirectToRoute('instituicionais_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('instituicional_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('instituicionais/new.html.twig', [
             'instituicional' => $instituicional,
             'form' => $form,
+            'title'=>'Instituicional',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+
         ]);
     }
 
@@ -47,6 +58,9 @@ class InstituicionaisController extends AbstractController
     {
         return $this->render('instituicionais/show.html.twig', [
             'instituicional' => $instituicional,
+            'title'=>'Instituicional',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+
         ]);
     }
 
@@ -57,14 +71,26 @@ class InstituicionaisController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            if($entityManager->flush()){
+                
+                $instituicional->setImagemA($this->updateImage($form->get('imagemA')->getData(),$instituicional->getImagemA()));
+                $instituicional->setImagemB($this->updateImage($form->get('imagemB')->getData(),$instituicional->getImagemB()));
+                $instituicional->setImagemC($this->updateImage($form->get('imagemC')->getData(),$instituicional->getImagemC()));
 
-            return $this->redirectToRoute('instituicionais_index', [], Response::HTTP_SEE_OTHER);
+            $entityManager->flush();
+            }
+        
+            
+
+            return $this->redirectToRoute('instituicional_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('instituicionais/edit.html.twig', [
             'instituicional' => $instituicional,
             'form' => $form,
+            'title'=>'Instituicional',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+
         ]);
     }
 
@@ -72,10 +98,58 @@ class InstituicionaisController extends AbstractController
     public function delete(Request $request, Instituicional $instituicional, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$instituicional->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($instituicional);
+           // $entityManager->remove($instituicional);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('instituicionais_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    
+    private function updateImage($imagemFile,$oldFileName){
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Instituicional',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                return $newFilename;
+                unlink($this->getParameter('uploads_directory').'Instituicional/'.$oldFileName);
+            }
+        return $oldFileName;
+        
+    }
+    private function createImage($imagemFile){
+        // this condition is needed because the 'imagem' field is not required
+        // so the PDF file must be processed only when a file is uploaded
+        if ($imagemFile) {
+            $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+            
+            // Move the file to the directory where imagems are stored
+            try {
+                $imagemFile->move(
+                    $this->getParameter('uploads_directory').'Instituicional',
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            // updates the 'imagemFilename' property to store the PDF file name
+            // instead of its contents
+        }
+        
+        return $newFilename;
     }
 }

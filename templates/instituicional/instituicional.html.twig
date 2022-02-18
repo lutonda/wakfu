@@ -8,6 +8,14 @@
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row no-gutters justify-content-center">
+			
+			{% if admin %}
+				<div class="row justify-content-center">
+					<div class="col-md-12 text-center">
+						<a href="{{ path('instituicionais_edit',{id:instituicional.id}) }}" class="btn btn-primary">Editar</a>
+					</div>
+				</div>
+			{% endif %}
 				<div class="col-md-12">
 					<div class="wrapper">
 						<div class="row g-0" style="background:#ccc">
@@ -16,14 +24,12 @@
 								<h3>
 								Mensagem do Reitor
 								</h3>
-									<p>
-										Prezados,
-										É com imenso prazer que lhe damos as boas-vindas à nossa página que espelha, de forma sintéctica, as diferentes actividades da Escola Superior Pedagógica do Bengo (ESP-Bengo), sustentadas na inter-relação dialéctica dos quatros eixos fundamentais de toda universidade moderna: o ensino, investigação, extensão e gestão.
-										A missão e visão da ESP-Bengo, decorrentes das atribuições do seu Estatuto Orgânico, em conjugação com os valores que se preconizam como a responsabilidade social, o humanismo, participação  activa, a democracia, solidariedade, excelência, aprendizagem para a vida, racionalidade, cidadania, autonomia, a criatividade e inovação, entre outros, têm catapultado a  nossa instituição no diagnóstico e solução das diferentes situações problemáticas que enfermam o contexto no qual se encontra, com incidência a nível nacional e internacional.</p>
+									{{instituicional.mensagem|raw}}
 
 								</div>
 							</div>
-							<div class="col-lg-6"></div>
+							<div class="col-md-6 img" style="background-image:url(/images/uploads/Pessoa/{{ instituicional.coordenador.imagem }})">
+							
 						</div>
 						
 					</div>
@@ -42,9 +48,9 @@
 								<span class="number">Ensino</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Ministramos mais de 90 cursos nos campos de  Engenharia e Ciências Sociais, Direito, Economia, Letras e Medicina.</p>
+								{{instituicional.ensino|raw}}
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -55,9 +61,9 @@
 								<span class="number">Investigação</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Somos líderes na investigação científica em Angola e apresentamos neste website os resultados da nossa produção.</p>
+								{{instituicional.investigacao|raw}}
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -68,9 +74,9 @@
 								<span class="number">Extensão</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Fundada em 1976, a ISP Bengo é a maior universidade de Angola, sendo referência no ensino superior angolano.</p>
+								{{instituicional.extensao|raw}}
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Repository\CursoRepository;
 use App\Repository\DepartamentoRepository;
+use App\Repository\InstituicionalRepository;
+use App\Repository\SobreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,11 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class InstituicionalController extends AbstractController
 {
     #[Route('/', name: 'instituicional_index')]
-    public function index(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
+    public function index(DepartamentoRepository $departamentoRepository, SobreRepository $sobreRepository, InstituicionalRepository $instituicionalRepository): Response
     {
-        $cursos=$cursoRepository->findBy(['isactive'=>true]);
-        $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
         
+        $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
+        $instituicional=$instituicionalRepository->findAll()[0];
+        $sobre=$sobreRepository->findAll()[0];
         return $this->render('instituicional/instituicional.html.twig', [
 
             'title'=>'Instituicional',
@@ -25,8 +28,10 @@ class InstituicionalController extends AbstractController
 
 
             'controller_name' => 'HomeController',
-            'cursos'=>$cursos,
-            'departamentos'=>$departamentos
+            'sobre'=>$sobre,
+            'departamentos'=>$departamentos,
+            'instituicional'=>$instituicional
+
         ]);
     }
     #[Route('/historia', name: 'historia')]

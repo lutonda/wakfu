@@ -95,7 +95,8 @@ t.parentNode.insertBefore(z, t)
 							</span>
 							<h1 class="mb-4">Instituto Superior Politécnico do Bengo
 							</h1>
-							<p class="mb-4">criado ao abrigo do Decreto Presidencial n.º  285/20 de 29 de Outubro  que aprova e reorganiza a rede de instituições públicas de ensino superior, cujo o seu Estatuto Orgânico aprovado através do Decreto Presidencial n.º 311/21 de 22 de Dezembro.</p>
+							<p class="mb-4">
+							{{sobre.sobre|striptags|slice(0,100)}}</p>
 							<p>
 								<a href="{{path('sobre')}}" class="btn btn-primary p-4 py-3">Saber mais!
 									<span class="fa fa-cevron-right"></span>
@@ -612,9 +613,9 @@ t.parentNode.insertBefore(z, t)
 								<span class="number">Ensino</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Ministramos mais de 90 cursos nos campos de  Engenharia e Ciências Sociais, Direito, Economia, Letras e Medicina.</p>
+								<p>{{instituicional.ensino|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -625,9 +626,9 @@ t.parentNode.insertBefore(z, t)
 								<span class="number">Investigação</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Somos líderes na investigação científica em Angola e apresentamos neste website os resultados da nossa produção.</p>
+								<p>{{instituicional.investigacao|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -638,14 +639,15 @@ t.parentNode.insertBefore(z, t)
 								<span class="number">Extensão</span>
 							</span>
 							<div class="p-4 px-lg-5">
-								<p>Fundada em 1976, a ISP Bengo é a maior universidade de Angola, sendo referência no ensino superior angolano.</p>
+								<p>{{instituicional.extensao|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="https://preview.colorlib.com/theme/academia/index.html#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
+							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		
 		<section class="ftco-section bg-light ftco-no-pt">
 			<div class="container-xl">
 				<div class="row justify-content-center mb-5">
@@ -655,72 +657,7 @@ t.parentNode.insertBefore(z, t)
 					</div>
 				</div>
 				<div class="row justify-content-center">
-					<div class="col-md-6 col-lg-4 d-flex">
-						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-							<a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_1.jpg.pagespeed.ic.7R2Zr2FA0t.webp)"></a>
-							<div class="text">
-								<p class="meta">
-									<span>
-										<i class="fa fa-user me-1"></i>Admin</span>
-									<span>
-										<i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span>
-									<span>
-										<a href="https://preview.colorlib.com/theme/academia/index.html#">
-											<i class="fa fa-comment me-1"></i>
-											3 Comments</a>
-									</span>
-								</p>
-								<h3 class="heading mb-3">
-									<a href="https://preview.colorlib.com/theme/academia/index.html#">Build your Dream Software &amp; Engineering Career</a>
-								</h3>
-								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 d-flex">
-						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-							<a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_2.jpg.pagespeed.ic.LFeFzbiNiA.webp)"></a>
-							<div class="text">
-								<p class="meta">
-									<span>
-										<i class="fa fa-user me-1"></i>Admin</span>
-									<span>
-										<i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span>
-									<span>
-										<a href="https://preview.colorlib.com/theme/academia/index.html#">
-											<i class="fa fa-comment me-1"></i>
-											3 Comments</a>
-									</span>
-								</p>
-								<h3 class="heading mb-3">
-									<a href="https://preview.colorlib.com/theme/academia/index.html#">Build your Dream Software &amp; Engineering Career</a>
-								</h3>
-								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 d-flex">
-						<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-							<a href="https://preview.colorlib.com/theme/academia/blog-single.html" class="block-20 img" style="background-image:url(images/ximage_3.jpg.pagespeed.ic.mPHHvHgH24.webp)"></a>
-							<div class="text">
-								<p class="meta">
-									<span>
-										<i class="fa fa-user me-1"></i>Admin</span>
-									<span>
-										<i class="fa fa-calendar me-1"></i>Jan. 18, 2021</span>
-									<span>
-										<a href="https://preview.colorlib.com/theme/academia/index.html#">
-											<i class="fa fa-comment me-1"></i>
-											3 Comments</a>
-									</span>
-								</p>
-								<h3 class="heading mb-3">
-									<a href="https://preview.colorlib.com/theme/academia/index.html#">Build your Dream Software &amp; Engineering Career</a>
-								</h3>
-								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							</div>
-						</div>
-					</div>
+					{% include "noticia/list.html.twig" %}
 				</div>
 			</div>
 		</section>
