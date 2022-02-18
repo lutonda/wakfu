@@ -1,46 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Noticia{% endblock %}
-
-{% block body %}
-    <h1>Noticia</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ noticium.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ noticium.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Categoria</th>
-                <td>{{ noticium.categoria }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ noticium.text }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ noticium.code }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ noticium.created ? noticium.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Isactive</th>
-                <td>{{ noticium.isactive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('noticia_index') }}">back to list</a>
-
-    <a href="{{ path('noticia_edit', {'id': noticium.id}) }}">edit</a>
-
-    {{ include('noticia/_delete_form.html.twig') }}
+{% block title %}Evento
 {% endblock %}
+
+{% block stylesheet %}
+<style>
+.hero-wrap .slider-text {
+    min-height: 500px !important;
+}
+</style>
+{% endblock %}
+
+{% block coverUrl %}/images/uploads/Noticia/{{noticium.imagem}}{% endblock %}
+{% block body %}
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+            	<h4 class="heading mb-3">#{{noticium.code|slice(0,4)|upper}}</h4>
+				<h1>{{noticium.titulo}}</h1>
+				<div class="col-md-12 col-lg-12 d-flex">
+					<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+						<div class="text">
+							<span>
+								<a href="#">
+									<i class="fa fa-comment me-1"></i>
+									0 Comentarios
+								</a>
+							</span>
+							<span>|</span>
+							<span>
+								<i class="fa fa-calendar-o me-1"></i>
+								{{noticium.created|date('d M Y')}}
+							</span>
+                            {% if admin %}
+							<span>
+								<a href="{{ path('noticia_edit', {'id': noticium.id}) }}" class="btn btn-primary pull-right">
+                                <i class="fa fa-edit"></i>
+                                Edit</a>
+							</span>
+                            <span class="pull-right">
+							{{ include('noticia/_delete_form.html.twig') }}
+                            </span>
+                            {% endif %}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row g-0" style="background:#ccc">
+						<div class="col-lg-8">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<p>{{noticium.text|raw}}
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4 img" style="background-image:url(/images/uploads/Noticia/{{ noticium.imagem }})">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}
+

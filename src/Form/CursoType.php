@@ -51,8 +51,6 @@ class CursoType extends AbstractType
                     ])
                 ],
             ])
-
-            ->add('code')
             ->add('isactive')
             ->add('departamento',EntityType::class, array(
                 'class' => Departamento::class,

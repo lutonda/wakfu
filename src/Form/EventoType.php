@@ -6,7 +6,7 @@ use App\Entity\Evento;
 use App\Entity\Tag;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +18,9 @@ class EventoType extends AbstractType
         $builder
             ->add('titulo')
             ->add('texto')
-            ->add('data')
+            ->add('data', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('isactive')
             
             ->add('tags',EntityType::class, array(

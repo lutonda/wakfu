@@ -36,6 +36,9 @@ class Noticia
     #[ORM\Column(type:'boolean')]
     protected $isactive=true;  
 
+    #[ORM\Column(type: 'text')]
+    private $imagem;
+
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
 
@@ -133,4 +136,17 @@ class Noticia
 
         return $this;
     }
+    
+    public function getImagem(): ?string
+    {
+        return $this->imagem;
+    }
+
+    public function setImagem(string $imagem): self
+    {
+        $this->imagem = $imagem;
+
+        return $this;
+    }
+
 }

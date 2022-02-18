@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CursoRepository;
 use App\Repository\DepartamentoRepository;
+use App\Repository\SobreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,8 +26,9 @@ class HomeController extends AbstractController
         ]);
     }
     #[Route('/sobre', name: 'sobre')]
-    public function about(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
+    public function about(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository,SobreRepository $sobreRepository): Response
     {
+        $sobre=$sobreRepository->findAll()[0];
         $cursos=$cursoRepository->findBy(['isactive'=>true]);
         $departamentos=$departamentoRepository->findBy(['isactive'=>true]);
         
@@ -37,6 +39,7 @@ class HomeController extends AbstractController
             'title'=>'Sobre Nós',
             'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
 
+            'sobre'=>$sobre,
             'cursos'=>$cursos,
             'departamentos'=>$departamentos
         ]);

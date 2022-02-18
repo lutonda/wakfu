@@ -19,6 +19,8 @@ class SobreController extends AbstractController
     {
         return $this->render('sobre/index.html.twig', [
             'sobres' => $sobreRepository->findAll(),
+            'title'=>'Contactos',
+            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
         ]);
     }
 

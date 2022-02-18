@@ -3,9 +3,6 @@
 {% block title %}New Evento{% endblock %}
 
 {% block body %}
-    <h1>Create new Evento</h1>
+    {{ include('evento/_form.html.twig',{'titulo':'Create Evento'}) }}
 
-    {{ include('evento/_form.html.twig') }}
-
-    <a href="{{ path('evento_index') }}">back to list</a>
 {% endblock %}

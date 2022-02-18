@@ -15,7 +15,6 @@
 		<link rel="stylesheet" href="/front/font-awesome.min.css">
 		<link rel="stylesheet" href="/front/ionicons.min.css">
 		<link rel="stylesheet" href="/front/animate.css">
-		{% block stylesheet %}{% endblock %}
 		<style>
 			hero-wrap .overlay {
 				opacity: 0.6 !important;
@@ -52,6 +51,8 @@
 				background: rgba(255, 255, 255, .8)
 			}
 		</style>
+		
+		{% block stylesheet %}{% endblock %}
 		<script type="text/javascript" async="" src="/front/analytics.js"></script>
 		<script defer="" src="/front/js.js"></script>
 		<script>
@@ -126,6 +127,7 @@ t.parentNode.insertBefore(z, t)
 		{% block body %}{% endblock %}
 		
 		{{ include('components/footer.html.twig') }}
+		
 		<script src="/front/bootstrap.bundle.min.js"></script>
 		<script src="/front/tiny-slider.js"></script>
 		<script src="/front/glightbox.min.js"></script>

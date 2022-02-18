@@ -7,6 +7,7 @@ use App\Form\NoticiaType;
 use App\Repository\NoticiaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class NoticiaController extends AbstractController
         return $this->render('noticia/index.html.twig', [
             'noticias' => $noticiaRepository->findAll(),
             'title'=>'Noticias',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'***'
         ]);
     }
 
@@ -32,6 +33,27 @@ class NoticiaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imagemFile = $form->get('imagem')->getData();
+
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Noticia',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $noticium->setImagem($newFilename);
+            }
             $entityManager->persist($noticium);
             $entityManager->flush();
 
@@ -42,7 +64,7 @@ class NoticiaController extends AbstractController
             'noticium' => $noticium,
             'form' => $form,
             'title'=>'Notícias',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'***'
         ]);
     }
     
@@ -52,7 +74,7 @@ class NoticiaController extends AbstractController
         return $this->render('noticia/lite.html.twig', [
             'noticias' => $noticiaRepository->findAll(),
             'title'=>'Notícias',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'***'
         ]);
     }
 
@@ -62,7 +84,7 @@ class NoticiaController extends AbstractController
         return $this->render('noticia/show.html.twig', [
             'noticium' => $noticium,
             'title'=>'Notícias',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>$noticium->getTitulo()
         ]);
     }
 
@@ -73,7 +95,32 @@ class NoticiaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $oldFileName=$noticium->getImagem();
+            $imagemFile = $form->get('imagem')->getData();
+
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Noticia',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $noticium->setImagem($newFilename);
+            }
+            if($entityManager->flush()){
+                if($oldFileName!==$noticium->getImagem())
+                    unlink($this->getParameter('uploads_directory').'Noticia/'.$oldFileName);
+            }
 
             return $this->redirectToRoute('noticia_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,7 +129,7 @@ class NoticiaController extends AbstractController
             'noticium' => $noticium,
             'form' => $form,
             'title'=>'Notícias',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'***'
         ]);
     }
 
