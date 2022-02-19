@@ -7,6 +7,7 @@ use App\Form\GaleriaType;
 use App\Repository\GaleriaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,6 +33,27 @@ class GaleriaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imagemFile = $form->get('imagem')->getData();
+
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Galeria',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $galeria->setImagem($newFilename);
+            }
             $entityManager->persist($galeria);
             $entityManager->flush();
 
@@ -61,7 +83,32 @@ class GaleriaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $oldFileName=$galeria->getImagem();
+            $imagemFile = $form->get('imagem')->getData();
+
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Galeria',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $galeria->setImagem($newFilename);
+            }
+            if($entityManager->flush()){
+                if($oldFileName!==$galeria->getImagem())
+                    unlink($this->getParameter('uploads_directory').'Galeria/'.$oldFileName);
+            }
 
             return $this->redirectToRoute('galeria_index', [], Response::HTTP_SEE_OTHER);
         }

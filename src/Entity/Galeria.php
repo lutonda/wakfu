@@ -29,6 +29,9 @@ class Galeria
     #[ORM\ManyToMany(targetEntity: 'Tag')]
     private $tags;
 
+    #[ORM\Column(type: 'datetime')]
+    private $created;
+
     public function __construct()
     {
         $this->created=new   \DateTime();
@@ -79,9 +82,21 @@ class Galeria
         return $this->tags;
     }
 
-    public function setTags(string $tags): self
+    public function setTags($tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated( $created): self
+    {
+        $this->created = $created;
 
         return $this;
     }
