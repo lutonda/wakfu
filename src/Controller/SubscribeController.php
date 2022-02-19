@@ -55,14 +55,9 @@ class SubscribeController extends AbstractController
             $entityManager->persist($subscribe);
             $entityManager->flush();
 
-            return $this->redirect($request->headers->get('referer').'?success=subscribe');;
+            return $this->redirect($request->headers->get('referer').'?success=subscribe');
         }
-        return $this->renderForm('subscribe/lite.html.twig', [
-            'subscribe' => $subscribe,
-            'form' => $form,
-            'title'=>'',
-            'subtitle'=>''
-        ]);
+        return $this->redirect($request->headers->get('referer').'?success=subscribe');
     }
 
     #[Route('/{id}', name: 'subscribe_show', methods: ['GET'])]
