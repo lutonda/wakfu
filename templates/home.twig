@@ -22,7 +22,7 @@
 			a.nav-link:hover,
 			a.nav-link.active {
 				border-bottom: solid 5px #39f;
-				background: rgba(255, 255, 255, .1)
+				background: rgba(255, 255, 255, 0.1)
 			}
 		</style>
 		<script type="text/javascript" async="" src="./front/analytics.js"></script>
@@ -96,7 +96,7 @@ t.parentNode.insertBefore(z, t)
 							<h1 class="mb-4">Instituto Superior Politécnico do Bengo
 							</h1>
 							<p class="mb-4">
-							{{sobre.sobre|striptags|slice(0,100)}}</p>
+								{{sobre.sobre|striptags|slice(0,100)}}</p>
 							<p>
 								<a href="{{path('sobre')}}" class="btn btn-primary p-4 py-3">Saber mais!
 									<span class="fa fa-cevron-right"></span>
@@ -248,7 +248,8 @@ t.parentNode.insertBefore(z, t)
 															<span class="{{departamento.icon}}"></span>
 														</div>
 														<div class="text">
-															<span class="author">{{departamento.texto}} </span>
+															<span class="author">{{departamento.texto}}
+															</span>
 															<h2>{{departamento.titulo}}</h2>
 														</div>
 													</div>
@@ -605,7 +606,7 @@ t.parentNode.insertBefore(z, t)
 		</section>
 		<section class="ftco-section ftco-no-pt">
 			<div class="row">
-				
+
 				<div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
 					<div class="block-7">
 						<div class="text-center">
@@ -647,7 +648,7 @@ t.parentNode.insertBefore(z, t)
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="ftco-section bg-light ftco-no-pt">
 			<div class="container-xl">
 				<div class="row justify-content-center mb-5">
@@ -666,6 +667,7 @@ t.parentNode.insertBefore(z, t)
 		<script src="./front/bootstrap.bundle.min.js"></script>
 		<script src="./front/tiny-slider.js"></script>
 		<script src="./front/glightbox.min.js"></script>
+
 		<script>
 			eval(mod_pagespeed_7_hPlGGYt1);
 		</script>
@@ -689,6 +691,7 @@ dataLayer.push(arguments);
 gtag('js', new Date());
 
 gtag('config', 'UA-23581568-13');
+
 		</script>
 		<script defer="" src="./front/v652eace1692a40cfa3763df669d7439c1639079717194.js" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;6dafd0200df677dd&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
 		<div id="the_notes"></div>

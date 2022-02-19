@@ -17,14 +17,17 @@ class Departamento
     #[Assert\Uuid]
     private $id;
 
-    #[ORM\Column(type: 'string', nullable:true, length: 255)]
+    #[ORM\Column(type: 'string')]
     private $texto;
+
+    #[ORM\Column(type: 'text')]
+    private $text;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $titulo;
 
-    #[ORM\ManyToMany(targetEntity: 'Pessoa')]
-    private $pessoas;
+    #[ORM\ManyToOne(targetEntity: 'Pessoa')]
+    private $coordenador;
 
     #[ORM\Column(type: 'string')]
     private $code;
@@ -77,14 +80,26 @@ class Departamento
         return $this;
     }
 
-    public function getPessoas()
+    public function getText(): ?string
     {
-        return $this->pessoas;
+        return $this->text;
     }
 
-    public function setPessoas($pessoas): self
+    public function setText(string $text): self
     {
-        $this->pessoas = $pessoas;
+        $this->text = $text;
+
+        return $this;
+    }
+
+    public function getCoordenador()
+    {
+        return $this->coordenador;
+    }
+
+    public function setCoordenador($coordenador): self
+    {
+        $this->coordenador = $coordenador;
 
         return $this;
     }

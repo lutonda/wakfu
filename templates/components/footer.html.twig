@@ -1,150 +1,147 @@
 <section class="ftco-intro py-5 bg-primary">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="col-lg-10">
-						<div class="row g-lg-5">
-							<div class="col-md-7 text-lg-right">
-								<h2 class="mb-0">Subscreva-te a nossa newsletter e fique sempre informado</h2>
-								<p>Recebe periodicamente todas novidades sobre o ISP-BENGO</p>
-							</div>
-							<div class="col-md-5 border-left d-flex align-items-center">
-								<form action="#" class="subscribe-form">
-									<div class="form-group d-flex align-items-center">
-										<input type="text" class="form-control" placeholder="Digite o seu E-mail">
-										<a href="#" class="btn-icon">
-											<span class="fa fa-paper-plane"></span>
-										</a>
-									</div>
-								</form>
-							</div>
-						</div>
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-lg-10">
+				<div class="row g-lg-5">
+					<div class="col-md-7 text-lg-right">
+						<h2 class="mb-0">Subscreva-te a nossa newsletter e fique sempre informado</h2>
+						<p>Recebe periodicamente todas novidades sobre o ISP-BENGO</p>
 					</div>
+					{{ render(controller("App\\Controller\\SubscribeController::lite"), {}) }}
 				</div>
 			</div>
-		</section>
-		<footer class="ftco-footer">
-			<div class="container-xl">
-				<div class="row mb-5 justify-content-between">
-					<div class="col-md-6 col-lg">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2 logo d-flex">
-								<a class="navbar-brand align-items-center" href="https://preview.colorlib.com/theme/academia/index.html">
-									ISP BENGO
-									<span>Instituto Superior politécnico</span>
+		</div>
+	</div>
+</section>
+<footer class="ftco-footer">
+	<div class="container-xl">
+		<div class="row mb-5 justify-content-between">
+			<div class="col-md-6 col-lg">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2 logo d-flex">
+						<a class="navbar-brand align-items-center" href="https://preview.colorlib.com/theme/academia/index.html">
+							ISP BENGO
+							<span>Instituto Superior politécnico</span>
+						</a>
+					</h2>
+					<p>Fundada em 1976, a ISP Bengo é a maior universidade de Angola, sendo referência no ensino superior angolano.</p>
+					<ul class="ftco-footer-social list-unstyled mt-2">
+						<li>
+							<a href="#">
+								<span class="fa fa-twitter"></span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fa fa-facebook"></span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fa fa-instagram"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2">Explore mais</h2>
+					<ul class="list-unstyled">
+						<li>
+							<a href="{{path('curso_index')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Cursos</a>
+						</li>
+						<li>
+							<a href="{{path('instituicional_index')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Instituicional</a>
+						</li>
+						<li>
+							<a href="{{path('evento_index')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Eventos</a>
+						</li>
+						<li>
+							<a href="{{path('noticia_index')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Noticias</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2">Links rápidos</h2>
+					<ul class="list-unstyled">
+						<li>
+							<a href="{{path('contactos')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Contactos</a>
+						</li>
+						<li>
+							<a href="{{path('sobre')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Sobre nós</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Ensino</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Investigação</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2">Mais recetes noticias</h2>
+					{{ render( controller("App\\Controller\\NoticiaController::lite")) }}
+				</div>
+			</div>
+			<div class="col-md-6 col-lg">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2">Contacte-nos</h2>
+					<div class="block-23 mb-3">
+						<ul>
+							<li>
+								<span class="icon fa fa-map marker"></span>
+								<span class="text">Caxito, Bengo Angola</span>
+							</li>
+							<li>
+								<a href="#">
+									<span class="icon fa fa-phone"></span>
+									<span class="text">+244 922 3929 210</span>
 								</a>
-							</h2>
-							<p>Fundada em 1976, a ISP Bengo é a maior universidade de Angola, sendo referência no ensino superior angolano.</p>
-							<ul class="ftco-footer-social list-unstyled mt-2">
-								<li>
-									<a href="#">
-										<span class="fa fa-twitter"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="fa fa-facebook"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="fa fa-instagram"></span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-2">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Explore mais</h2>
-							<ul class="list-unstyled">
-								<li>
-									<a href="{{path('curso_index')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Cursos</a>
-								</li>
-								<li>
-									<a href="{{path('instituicional_index')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Instituicional</a>
-								</li>
-								<li>
-									<a href="{{path('evento_index')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Eventos</a>
-								</li>
-								<li>
-									<a href="{{path('noticia_index')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Noticias</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-2">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Links rápidos</h2>
-							<ul class="list-unstyled">
-								<li>
-									<a href="{{path('contactos')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Contactos</a>
-								</li>
-								<li>
-									<a href="{{path('sobre')}}">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Sobre nós</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Ensino</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="ion ion-ios-arrow-round-forward me-2"></span>Investigação</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Mais recetes noticias</h2>
-							{{ render( controller("App\\Controller\\NoticiaController::lite")) }}
-						</div>
-					</div>
-					<div class="col-md-6 col-lg">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Contacte-nos</h2>
-							<div class="block-23 mb-3">
-								<ul>
-									<li>
-										<span class="icon fa fa-map marker"></span>
-										<span class="text">Caxito, Bengo Angola</span>
-									</li>
-									<li>
-										<a href="#">
-											<span class="icon fa fa-phone"></span>
-											<span class="text">+244 922 3929 210</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="icon fa fa-paper-plane"></span>
-											<span class="text">info@yourdomain.com</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+							</li>
+							<li>
+								<a href="#">
+									<span class="icon fa fa-paper-plane"></span>
+									<span class="text">info@yourdomain.com</span>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid px-0 py-5 bg-darken">
-				<div class="container-xl">
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<p class="mb-0" style="font-size: 14px;">Copyright ©
-								<script>
-									document.write(new Date().getFullYear());
-								</script> Todos direitos reservados
-								<i class="fa fa-heart color-danger" aria-hidden="true"></i>
-								
-							</p>
-						</div>
-					</div>
+		</div>
+	</div>
+	<div class="container-fluid px-0 py-5 bg-darken">
+		<div class="container-xl">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p class="mb-0" style="font-size: 14px;">Copyright ©
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						Todos direitos reservados
+						<i class="fa fa-heart color-danger" aria-hidden="true"></i>
+
+					</p>
 				</div>
 			</div>
-		</footer>
+		</div>
+	</div>
+</footer>
+<script>
+{% if app.request.get('success')=='subscribe' %}
+	alert('A sua subscrição foi feita com sucesso')
+{% endif %}
+</script>

@@ -21,3 +21,4 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 composer install
+symfony server:start

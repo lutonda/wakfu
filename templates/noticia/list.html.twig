@@ -15,9 +15,9 @@
 							0 Comments</a>
 					</span>
 				</p>
-				<h3 class="heading mb-3">
+				<h4 class="heading mb-3">
 					<a href="{{path('noticia_show', {'id': noticia.id})}}">{{noticia.titulo}}</a>
-				</h3>
+				</h4>
 				<p>{{ noticia.text|raw|slice(0,100)|raw }}</p>
 				<a href="{{path('noticia_show', {'id': noticia.id})}}" class="btn btn-primary d-block px-2 py-3">Ler</a>
 			</div>

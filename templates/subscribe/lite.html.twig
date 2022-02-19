@@ -1,0 +1,10 @@
+<div class="col-md-5 border-left d-flex align-items-center">
+	{{ form_start(form,{'action':path('subscribe_new_lite'),'method':'POST','attr':{'class': 'subscribe-form'}}) }}
+	<div class="form-group d-flex align-items-center">
+		{{ form_widget(form.email, {'attr': {'class': 'form-control','placeholder':'Digite o seu E-mail'}}) }}
+		<button class="btn-icon" style="border: none;background: none;">
+			<span class="fa fa-paper-plane"></span>
+		</a>
+	</div>
+	{{ form_end(form, {render_rest: false}) }}
+</div>

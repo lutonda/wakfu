@@ -7,6 +7,7 @@ use App\Form\DepartamentoType;
 use App\Repository\DepartamentoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class DepartamentoController extends AbstractController
         return $this->render('departamento/index.html.twig', [
             'departamentos' => $departamentoRepository->findAll(),
             'title'=>'Galeria de fotos',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'Nossa variedade de Departamentos'
         ]);
     }
 
@@ -32,6 +33,28 @@ class DepartamentoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imagemFile = $form->get('imagem')->getData();
+
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Departamento',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $departamento->setImagem($newFilename);
+            }
             $entityManager->persist($departamento);
             $entityManager->flush();
 
@@ -42,7 +65,7 @@ class DepartamentoController extends AbstractController
             'departamento' => $departamento,
             'form' => $form,
             'title'=>'Galeria de fotos',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'Nossa variedade de Departamentos'
         ]);
     }
 
@@ -51,8 +74,8 @@ class DepartamentoController extends AbstractController
     {
         return $this->render('departamento/show.html.twig', [
             'departamento' => $departamento,
-            'title'=>'Galeria de fotos',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'title'=>'Deparatmentos',
+            'subtitle'=>$departamento->getTexto().' '.$departamento->getTitulo()
         ]);
     }
 
@@ -63,16 +86,40 @@ class DepartamentoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $oldFileName=$departamento->getImagem();
+            $imagemFile = $form->get('imagem')->getData();
 
-            return $this->redirectToRoute('departamento_index', [], Response::HTTP_SEE_OTHER);
+            // this condition is needed because the 'imagem' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imagemFile) {
+                $newFilename = uniqid().'.'.$imagemFile->guessExtension();
+                
+                // Move the file to the directory where imagems are stored
+                try {
+                    $imagemFile->move(
+                        $this->getParameter('uploads_directory').'Departamento',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imagemFilename' property to store the PDF file name
+                // instead of its contents
+                $departamento->setImagem($newFilename);
+            }
+            if($entityManager->flush()){
+                if($oldFileName!==$departamento->getImagem())
+                    unlink($this->getParameter('uploads_directory').'Departamento/'.$oldFileName);
+            }
+            return $this->redirectToRoute('departamento_show', ['id'=>$departamento->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('departamento/edit.html.twig', [
             'departamento' => $departamento,
             'form' => $form,
             'title'=>'Galeria de fotos',
-            'subtitle'=>'Nossa variedade de Cursos'
+            'subtitle'=>'Nossa variedade de Departamentos'
         ]);
     }
 
@@ -80,7 +127,7 @@ class DepartamentoController extends AbstractController
     public function delete(Request $request, Departamento $departamento, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$departamento->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($departamento);
+            //$entityManager->remove($departamento);
             $entityManager->flush();
         }
 
