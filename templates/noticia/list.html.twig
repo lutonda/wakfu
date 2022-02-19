@@ -1,7 +1,7 @@
 {% for noticia in noticias %}
 	<div class="col-md-6 col-lg-4 d-flex">
 		<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
-			<a href="blog-single.html" class="block-20 img" style="background-image:url(/images/uploads/Noticia/{{ noticia.imagem }})"></a>
+			<a href="{{path('noticia_show', {'id': noticia.id})}}" class="block-20 img" style="background-image:url(/images/uploads/Noticia/{{ noticia.imagem }})"></a>
 			<div class="text">
 				<p class="meta">
 					<span>
@@ -16,10 +16,10 @@
 					</span>
 				</p>
 				<h3 class="heading mb-3">
-					<a href="#">{{noticia.titulo}}</a>
+					<a href="{{path('noticia_show', {'id': noticia.id})}}">{{noticia.titulo}}</a>
 				</h3>
 				<p>{{ noticia.text|raw|slice(0,100)|raw }}</p>
-				<a href="{{path('noticia_show', {'id': noticia.id})}}" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Ler</a>
+				<a href="{{path('noticia_show', {'id': noticia.id})}}" class="btn btn-primary d-block px-2 py-3">Ler</a>
 			</div>
 		</div>
 	</div>

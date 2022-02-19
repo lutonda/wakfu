@@ -1,46 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Departamento{% endblock %}
+{% block title %}Evento
+{% endblock %}
+
+{% block stylesheet %}
+<style>
+.hero-wrap .slider-text {
+    min-height: 500px !important;
+}
+</style>
+{% endblock %}
+
+{% block coverUrl %}/images/uploads/Departamento/{{departamento.imagem}}{% endblock %}
 
 {% block body %}
-    <h1>Departamento</h1>
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+				<h4 class="heading mb-3">#{{departamento.code|slice(0,4)|upper}}</h4>
+                <h4 class="heading mb-3">{{departamento.texto|upper}}</h4>
+				<h1>{{departamento.titulo}}</h1>
+				<div class="col-md-12 col-lg-12 d-flex">
+					<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+						<div class="text">
+							<span>
+								<a href="#">
+									<i class="fa fa-comment me-1"></i>
+									Vagas: <b>{{departamento.cursos|map((c)=>c.vagas)|reduce((c,n)=>n+n)}}</b>
+								</a>
+							</span>
+							<span>|</span>
+							<span>
+								Cursos: <b>{{departamento.cursos|length}}</b>
+							</span>
+                            {% if admin %}
+							<span>
+								<a href="{{ path('departamento_edit', {'id': departamento.id}) }}" class="btn btn-primary pull-right">
+                                <i class="fa fa-edit"></i>
+                                Edit</a>
+							</span>
+                            <span class="pull-right">
+							{{ include('departamento/_delete_form.html.twig') }}
+                            </span>
+                            {% endif %}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row g-0" style="background:#ccc">
+						<div class="col-lg-6">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<p>{{departamento.text|raw}}
+								</p>
+							</div>
+						</div>
+						<div class="col-md-6 img" style="background-image:url(/images/uploads/Departamento/{{ departamento.imagem }})">
+						</div>
+					</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ departamento.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ departamento.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ departamento.code }}</td>
-            </tr>
-            <tr>
-                <th>Imagem</th>
-                <td>{{ departamento.imagem }}</td>
-            </tr>
-            <tr>
-                <th>Icon</th>
-                <td>{{ departamento.icon }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ departamento.created ? departamento.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Isactive</th>
-                <td>{{ departamento.isactive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <a href="{{ path('departamento_index') }}">back to list</a>
-
-    <a href="{{ path('departamento_edit', {'id': departamento.id}) }}">edit</a>
-
-    {{ include('departamento/_delete_form.html.twig') }}
+<section class="ftco-section">
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="subheading">Cursos</span>
+                </div>
+            </div>
+            <div class="row g-lg-2 justify-content-center">
+                {% for curso in departamento.cursos %}
+                    <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                        <a href="{{path('curso_show', {'id': curso.id})}}" class="services-2">
+                            <div class="icon"><span class="{{ curso.icon }}"></span></div>
+                            <div class="text">
+                                <h2>{{ curso.titulo }}</h2>
+                                <span>{{ curso.departamento.titulo }}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% else %}
+                    <span>Sem nem um curso</span>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
 {% endblock %}
