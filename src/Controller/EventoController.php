@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/eventos')]
 class EventoController extends AbstractController
 {
@@ -25,6 +28,7 @@ class EventoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'evento_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -78,6 +82,7 @@ class EventoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'evento_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Evento $evento, EntityManagerInterface $entityManager): Response
     {
@@ -122,6 +127,7 @@ class EventoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'evento_delete', methods: ['POST'])]
     public function delete(Request $request, Evento $evento, EntityManagerInterface $entityManager): Response
     {

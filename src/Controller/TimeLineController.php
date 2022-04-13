@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/timeline')]
 class TimeLineController extends AbstractController
 {
@@ -25,6 +28,7 @@ class TimeLineController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'time_line_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -55,6 +59,7 @@ class TimeLineController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'time_line_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TimeLine $timeLine, EntityManagerInterface $entityManager): Response
     {
@@ -73,6 +78,7 @@ class TimeLineController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'time_line_delete', methods: ['POST'])]
     public function delete(Request $request, TimeLine $timeLine, EntityManagerInterface $entityManager): Response
     {

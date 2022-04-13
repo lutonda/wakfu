@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/noticia')]
 class NoticiaController extends AbstractController
 {
@@ -25,6 +28,7 @@ class NoticiaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'noticia_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -88,6 +92,7 @@ class NoticiaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'noticia_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Noticia $noticium, EntityManagerInterface $entityManager): Response
     {
@@ -133,6 +138,7 @@ class NoticiaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'noticia_delete', methods: ['POST'])]
     public function delete(Request $request, Noticia $noticium, EntityManagerInterface $entityManager): Response
     {

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/subscribe')]
 class SubscribeController extends AbstractController
 {
@@ -43,6 +46,7 @@ class SubscribeController extends AbstractController
             'subtitle'=>''
         ]);
     }
+
     #[Route('/new/Lite', name: 'subscribe_new_lite', methods: ['GET', 'POST'])]
     public function lite(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -60,6 +64,7 @@ class SubscribeController extends AbstractController
         return $this->redirect($request->headers->get('referer').'?success=subscribe');
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'subscribe_show', methods: ['GET'])]
     public function show(Subscribe $subscribe): Response
     {
@@ -68,6 +73,7 @@ class SubscribeController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'subscribe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Subscribe $subscribe, EntityManagerInterface $entityManager): Response
     {
@@ -86,6 +92,7 @@ class SubscribeController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'subscribe_delete', methods: ['POST'])]
     public function delete(Request $request, Subscribe $subscribe, EntityManagerInterface $entityManager): Response
     {

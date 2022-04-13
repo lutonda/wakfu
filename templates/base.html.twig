@@ -1,8 +1,8 @@
 
 {% set admin = false %}
 {% if app.user %}
-	{% if 'ROLE_ADMIN' in app.user.roles|keys %}
-		{% set admin = true %}								
+	{% if 'ROLE_ADMIN' in app.user.roles %}
+		{% set admin = true %}	
 	{% endif %}
 {% endif %}
 <!DOCTYPE html>

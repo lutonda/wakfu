@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/sobres')]
 class SobreController extends AbstractController
 {
@@ -24,6 +27,7 @@ class SobreController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'sobre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -47,6 +51,7 @@ class SobreController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'sobre_show', methods: ['GET'])]
     public function show(Sobre $sobre): Response
     {
@@ -58,6 +63,7 @@ class SobreController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'sobre_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sobre $sobre, EntityManagerInterface $entityManager): Response
     {
@@ -79,6 +85,7 @@ class SobreController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'sobre_delete', methods: ['POST'])]
     public function delete(Request $request, Sobre $sobre, EntityManagerInterface $entityManager): Response
     {

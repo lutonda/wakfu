@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/instituicionais')]
 class InstituicionaisController extends AbstractController
 {
@@ -26,6 +29,7 @@ class InstituicionaisController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'instituicionais_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -64,6 +68,7 @@ class InstituicionaisController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'instituicionais_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Instituicional $instituicional, EntityManagerInterface $entityManager): Response
     {
@@ -94,6 +99,7 @@ class InstituicionaisController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'instituicionais_delete', methods: ['POST'])]
     public function delete(Request $request, Instituicional $instituicional, EntityManagerInterface $entityManager): Response
     {

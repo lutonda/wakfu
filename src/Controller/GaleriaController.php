@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/galeria')]
 class GaleriaController extends AbstractController
 {
@@ -25,6 +28,7 @@ class GaleriaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'galeria_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -76,6 +80,7 @@ class GaleriaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'galeria_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Galeria $galeria, EntityManagerInterface $entityManager): Response
     {
@@ -119,6 +124,7 @@ class GaleriaController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'galeria_delete', methods: ['POST'])]
     public function delete(Request $request, Galeria $galeria, EntityManagerInterface $entityManager): Response
     {

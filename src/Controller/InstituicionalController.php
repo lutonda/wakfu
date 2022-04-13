@@ -7,9 +7,16 @@ use App\Repository\DepartamentoRepository;
 use App\Repository\InstituicionalRepository;
 use App\Repository\SobreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/instituicional')]
 class InstituicionalController extends AbstractController
@@ -34,6 +41,7 @@ class InstituicionalController extends AbstractController
 
         ]);
     }
+
     #[Route('/historia', name: 'historia')]
     public function historia(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
     {
@@ -51,6 +59,7 @@ class InstituicionalController extends AbstractController
             'departamentos'=>$departamentos
         ]);
     }
+
     #[Route('/contactos', name: 'contactos')]
     public function contacts(DepartamentoRepository $departamentoRepository, CursoRepository $cursoRepository): Response
     {
@@ -68,4 +77,28 @@ class InstituicionalController extends AbstractController
             'departamentos'=>$departamentos
         ]);
     }
+    
+    #[Route('/contact/sumit', name: 'contato_sumit', methods: ['GET', 'POST'])]
+    public function submit(Request $request, MailerInterface $mailer): Response
+    {
+
+
+        $email = (new Email())
+            
+            ->from(new Address($request->get('email'), $request->get('name')))
+            ->to('lutonda@gmail.com'/*'ispbengo@gmail.com'*/)
+            ->cc('info@ispbengo.ao')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('PORTAL ISPBENGO :: '.$request->get('subject'))
+            ->text($request->get('message'))
+            ->html($request->get('message'));
+
+       $sent= $mailer->send($email);
+        
+
+        return $this->redirectToRoute('contactos',['success'=>$sent==null ? 'true':'false']);
+    }
+
 }

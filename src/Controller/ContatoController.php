@@ -5,19 +5,20 @@ namespace App\Controller;
 use App\Entity\Contato;
 use App\Form\ContatoType;
 use App\Repository\ContatoRepository;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use App\Repository\ContatoRepository as RepositoryContatoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/contato')]
 class ContatoController extends AbstractController
 {
+
     #[Route('/', name: 'contato_index', methods: ['GET'])]
     public function index(RepositoryContatoRepository $contatoRepository): Response
     {
@@ -38,7 +39,8 @@ class ContatoController extends AbstractController
             'admin'=>$request->get('admin')
         ]);
     }
-
+    
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'contato_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -61,29 +63,8 @@ class ContatoController extends AbstractController
         ]);
     }
 
-    #[Route('/sumit', name: 'contato_sumit', methods: ['GET', 'POST'])]
-    public function submit(Request $request, MailerInterface $mailer): Response
-    {
-
-
-        $email = (new Email())
-            
-            ->from(new Address($request->get('email'), $request->get('name')))
-            ->to('lutonda@gmail.com'/*'ispbengo@gmail.com'*/)
-            ->cc('info@ispbengo.ao')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('PORTAL ISPBENGO :: '.$request->get('subject'))
-            ->text($request->get('message'))
-            ->html($request->get('message'));
-
-       $sent= $mailer->send($email);
-        
-
-        return $this->redirectToRoute('contactos',['success'=>$sent==null ? 'true':'false']);
-    }
-
+    
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'contato_show', methods: ['GET'])]
     public function show(Contato $contato): Response
     {
@@ -94,6 +75,7 @@ class ContatoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'contato_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contato $contato, EntityManagerInterface $entityManager): Response
     {
@@ -114,6 +96,7 @@ class ContatoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'contato_delete', methods: ['POST'])]
     public function delete(Request $request, Contato $contato, EntityManagerInterface $entityManager): Response
     {

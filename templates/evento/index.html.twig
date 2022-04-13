@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evento index
-{% endblock %}
+{% block title %}Eventos{% endblock %}
 
 {% block body %}
 
@@ -9,7 +8,8 @@
 		<div class="container-xl">
 			<div class="row justify-content-center">
 				<div class="col-md-8 heading-section text-center mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-					{% if true %}
+				{{admin}}
+					{% if admin %}
 						<a href="{{ path('evento_new') }}" class="btn btn-primary">
 							<i class="fa fa-plus"></i>
 							Create new</a>
