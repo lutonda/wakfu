@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Curso index
+{% block title %}Curso 
 {% endblock %}
 
 {% block body %}
@@ -25,7 +25,9 @@
 										{{sobre.sobre|raw}}</p>
 								</div>
 							</div>
-							<div class="col-lg-6"></div>
+							<div class="col-lg-6">
+							<img src="images/convers/cover.jpg"/>
+							</div>
 						</div>
 						<div class="row g-0" style="background:#FFF">
 							<div class="col-lg-4 order-lg-last">
@@ -38,29 +40,23 @@
 							</div>
                             <div class="col-lg-4 order-lg-last">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-                                    <img src="/logo/new_logo.png" style="width:100%"/>
-								</div>
-							</div>
-                            <div class="col-lg-4 order-lg-last">
-								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3>Visão</h3>
                                     <p>
                                     {{sobre.visao|raw}}
 									</p>
 								</div>
 							</div>
-						</div>
-						<div class="row g-0" style="background:#FFF">
 							<div class="col-lg-4 order-lg-last">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3>História</h3>
+									<h3>Visão</h3>
                                     <p>
                                     {{sobre.historia|raw}}.</p>
-									<div class="text-center">
-														<a href="{{ path('historia') }}" class="btn d-block btn-primary btn-outline-primary py-3">Ler mais</a>
-													</div>
 								</div>
 							</div>
+						</div>
+						<div class="row g-0" style="background:#FFF">
+							
+	{{ render(controller('App\\Controller\\DefaultController::timeline',{admin:admin})) }}
                             
 						</div>
 					</div>

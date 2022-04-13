@@ -20,7 +20,7 @@ class DepartamentoController extends AbstractController
     {
         return $this->render('departamento/index.html.twig', [
             'departamentos' => $departamentoRepository->findAll(),
-            'title'=>'Galeria de fotos',
+            'title'=>'Departamentos',
             'subtitle'=>'Nossa variedade de Departamentos'
         ]);
     }
@@ -74,7 +74,7 @@ class DepartamentoController extends AbstractController
     {
         return $this->render('departamento/show.html.twig', [
             'departamento' => $departamento,
-            'title'=>'Deparatmentos',
+            'title'=>'Departamentos',
             'subtitle'=>$departamento->getTexto().' '.$departamento->getTitulo()
         ]);
     }

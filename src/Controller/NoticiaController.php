@@ -20,7 +20,7 @@ class NoticiaController extends AbstractController
     {
         return $this->render('noticia/index.html.twig', [
             'noticias' => $noticiaRepository->findAll(),
-            'title'=>'Noticias',
+            'title'=>'Notícias',
             'subtitle'=>'***'
         ]);
     }

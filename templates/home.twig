@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}ISP-BENGO
 			{% endblock %}
 		</title>
 
@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="./front/ionicons.min.css">
 		<link rel="stylesheet" href="./front/animate.css">
 
+  		<link rel="icon" type="image/x-icon" href="favicon.png">
 		<style>
 			.hidden {
 				display: none
@@ -96,7 +97,7 @@ t.parentNode.insertBefore(z, t)
 							<h1 class="mb-4">Instituto Superior Politécnico do Bengo
 							</h1>
 							<p class="mb-4">
-								{{sobre.sobre|striptags|slice(0,100)}}</p>
+								{{sobre.sobre|striptags|raw|slice(0,130)}} ...</p>
 							<p>
 								<a href="{{path('sobre')}}" class="btn btn-primary p-4 py-3">Saber mais!
 									<span class="fa fa-cevron-right"></span>
@@ -616,7 +617,7 @@ t.parentNode.insertBefore(z, t)
 							<div class="p-4 px-lg-5">
 								<p>{{instituicional.ensino|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a href="{{path('instituicional_index')}}#ensino" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -629,7 +630,7 @@ t.parentNode.insertBefore(z, t)
 							<div class="p-4 px-lg-5">
 								<p>{{instituicional.investigacao|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							<a  href="{{path('instituicional_index')}}#investigacao" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
 						</div>
 					</div>
 				</div>
@@ -642,7 +643,7 @@ t.parentNode.insertBefore(z, t)
 							<div class="p-4 px-lg-5">
 								<p>{{instituicional.extensao|striptags|slice(0,100)}}</p>
 							</div>
-							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
+							<a  href="{{path('instituicional_index')}}#extensao" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
 						</div>
 					</div>
 				</div>

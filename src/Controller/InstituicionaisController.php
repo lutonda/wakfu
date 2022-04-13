@@ -21,7 +21,7 @@ class InstituicionaisController extends AbstractController
         return $this->render('instituicionais/index.html.twig', [
             'instituicionals' => $instituicionalRepository->findAll(),
             'title'=>'Instituicional',
-            'subtitle'=>'Fale connosco com as masi deversas formas de contactos',
+            'subtitle'=>''//'Fale connosco com as masi deversas formas de contactos',
 
         ]);
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Curso index
+{% block title %}Instituicional
 {% endblock %}
 
 {% block body %}
@@ -19,17 +19,19 @@
 				<div class="col-md-12">
 					<div class="wrapper">
 						<div class="row g-0" style="background:#ccc">
-							<div class="col-lg-6 order-lg-last">
+							<div class="col-lg-12 order-lg-last">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-								<h3>
-								Mensagem do Reitor
+								<h3><b>
+								Mensagem da coordenadora
+								</b>
 								</h3>
 									{{instituicional.mensagem|raw}}
 
 								</div>
 							</div>
+							<!--
 							<div class="col-md-6 img" style="background-image:url(/images/uploads/Pessoa/{{ instituicional.coordenador.imagem }})">
-							
+							-->
 						</div>
 						
 					</div>
@@ -37,12 +39,12 @@
 			</div>
 		</div>
 	</section>
-	<section class="ftco-section ftco-no-pt">
+	<section class="ftco-section ftco-no-pt" id="#mais">
 		<div class="container">
 			<div class="row no-gutters justify-content-center">
 				
-				<div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-					<div class="block-7">
+				<div  id="ensino" class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+					<div class="block-7" style="min-height: 620px">
 						<div class="text-center">
 							<span class="price">
 								<span class="number">Ensino</span>
@@ -50,12 +52,14 @@
 							<div class="p-4 px-lg-5">
 								{{instituicional.ensino|raw}}
 							</div>
+							<!--
 							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							-->
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-					<div class="block-7">
+				<div id="investigacao" class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+					<div class="block-7"  style="min-height: 620px">
 						<div class="text-center">
 							<span class="price">
 								<span class="number">Investigação</span>
@@ -63,12 +67,14 @@
 							<div class="p-4 px-lg-5">
 								{{instituicional.investigacao|raw}}
 							</div>
+							<!--
 							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">Saber mais</a>
+							-->
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-					<div class="block-7">
+				<div id="extensao" class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+					<div class="block-7"  style="min-height: 620px">
 						<div class="text-center">
 							<span class="price">
 								<span class="number">Extensão</span>
@@ -76,7 +82,9 @@
 							<div class="p-4 px-lg-5">
 								{{instituicional.extensao|raw}}
 							</div>
+							<!--
 							<a href="#" class="btn btn-primary btn-outline-primary d-block px-2 py-3">saber mais</a>
+							-->
 						</div>
 					</div>
 				</div>

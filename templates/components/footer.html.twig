@@ -7,7 +7,7 @@
 						<h2 class="mb-0">Subscreva-te a nossa newsletter e fique sempre informado</h2>
 						<p>Recebe periodicamente todas novidades sobre o ISP-BENGO</p>
 					</div>
-					{{ render(controller("App\\Controller\\SubscribeController::lite"), {}) }}
+					{#{ render(controller("App\\Controller\\SubscribeController::lite"), {}) }#}
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,9 @@
 							<span>Instituto Superior politécnico</span>
 						</a>
 					</h2>
-					<p>Fundada em 1976, a ISP Bengo é a maior universidade de Angola, sendo referência no ensino superior angolano.</p>
+					<p>
+					O ISP-BENGO uma instituição pública de ensino superior criado à luz do Decreto Presidencial n.º 285/20 de 29 de Outubro que 
+</p>
 					<ul class="ftco-footer-social list-unstyled mt-2">
 						<li>
 							<a href="#">
@@ -53,10 +55,6 @@
 								<span class="ion ion-ios-arrow-round-forward me-2"></span>Cursos</a>
 						</li>
 						<li>
-							<a href="{{path('instituicional_index')}}">
-								<span class="ion ion-ios-arrow-round-forward me-2"></span>Instituicional</a>
-						</li>
-						<li>
 							<a href="{{path('evento_index')}}">
 								<span class="ion ion-ios-arrow-round-forward me-2"></span>Eventos</a>
 						</li>
@@ -80,12 +78,8 @@
 								<span class="ion ion-ios-arrow-round-forward me-2"></span>Sobre nós</a>
 						</li>
 						<li>
-							<a href="#">
-								<span class="ion ion-ios-arrow-round-forward me-2"></span>Ensino</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="ion ion-ios-arrow-round-forward me-2"></span>Investigação</a>
+							<a href="{{path('instituicional_index')}}">
+								<span class="ion ion-ios-arrow-round-forward me-2"></span>Instituicional</a>
 						</li>
 					</ul>
 				</div>

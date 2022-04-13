@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Curso index{% endblock %}
+{% block title %}Contactos{% endblock %}
 
 {% block body %}
 
@@ -12,10 +12,21 @@
 					<div class="row g-0">
 						<div class="col-lg-6 order-lg-last">
 							<div class="contact-wrap w-100 p-md-5 p-4">
+							{% if app.request.get('success') is defined %}
+								{% if app.request.get('success')=='true' %}
+									<div class="alert alert-success" role="alert">
+										Mensagem enviada com sucesso
+									</div>
+								{% elseif app.request.get('success')=='false' %}
+									<div class="alert alert-danger" role="alert">
+										Lamentamos por algum motivo a sua mesnagem não foi enviada, por favor verifique que inserio os dados correctamente
+									</div>
+								{% endif %}
+							{% endif %}
 								<h3>Fale connosco</h3>
 								<p class="mb-4">Estamos abertos para sugestões ou contactos gerais</p>
 								
-								<form id="contactForm" name="contactForm" class="contactForm">
+								<form id="contactForm" method="POST" name="contactForm" class="contactForm" action="{{path('contato_sumit')}}">
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
@@ -60,8 +71,7 @@
 						</div>
 						<div class="col-lg-6  align-items-stretch">
 							<div style="position: relative; overflow: hidden; height:100%">
-                            <iframe  style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7052.322494320478!2d13.654689733769796!3d-8.581989583113776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a4e220cdc4068bb%3A0x93d12d77a122e0f5!2sMissionarias%20Eucaristica!5e0!3m2!1sen!2sao!4v1644648474120!5m2!1sen!2sao" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-								
+                            <iframe   style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31560.411436913037!2d13.660149888110373!3d-8.591054012166506!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a4e19c6ec95e113%3A0xbe61348ac3234916!2sobra%20universidade!5e0!3m2!1sen!2sao!4v1649783795586!5m2!1sen!2sao" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>	
 							</div>
 						</div>
 					</div>

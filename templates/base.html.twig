@@ -1,10 +1,17 @@
-{% set admin = true %}
+
+{% set admin = false %}
+{% if app.user %}
+	{% if 'ROLE_ADMIN' in app.user.roles|keys %}
+		{% set admin = true %}								
+	{% endif %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+		ISP-BENGO 
+			{% block title %} Welcome!
 			{% endblock %}
 		</title>
 		
@@ -15,6 +22,8 @@
 		<link rel="stylesheet" href="/front/font-awesome.min.css">
 		<link rel="stylesheet" href="/front/ionicons.min.css">
 		<link rel="stylesheet" href="/front/animate.css">
+		
+  		<link rel="icon" type="image/x-icon" href="favicon.png">
 		<style>
 			hero-wrap .overlay {
 				opacity: 0.6 !important;
@@ -115,9 +124,10 @@ t.parentNode.insertBefore(z, t)
 				<div class="row no-gutters slider-text align-items-center">
 					<div class="col-lg-5">
 						<div class="text mt-5 pt-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-							<span class="subheading">{{subtitle}}
-							</span>
+							{% if title is defined %}
 							<h1 class="mb-4">{{title}}</h1>
+							{% endif %}
+							
 						</div>
 					</div>
 				</div>

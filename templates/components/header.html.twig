@@ -7,7 +7,7 @@
 				<img src="/logo/logo.png" style="width:40px; border-radius: 3px">
 				<a class="navbar-brand align-items-center" href="/">
 					ISP-BENGO
-					<span>Instituto Superior Politecnico</span>
+					<span>Instituto Superior Politécnico</span>
 				</a>
 			</div>
 			<div class="col-md d-flex align-items-center">
@@ -17,7 +17,7 @@
 					</div>
 					<div class="text">
 						<span>Segunda a Sexta</span>
-						<strong>8:00 as 15:00</strong>
+						<strong>8:00 às 15:00</strong>
 					</div>
 				</div>
 			</div>
@@ -35,16 +35,31 @@
 			<div class="col-md d-flex justify-content-end align-items-center">
 				<div class="social-media">
 					<p class="mb-0 d-flex">
-						<a href="#" class="d-flex align-items-center justify-content-center">
+						<a href="https://www.facebook.com/ISPBENGO" class="d-flex align-items-center justify-content-center">
 							<span class="fa fa-facebook">
 								<i class="sr-only">Facebook</i>
 							</span>
 						</a>
 						<a href="#" class="d-flex align-items-center justify-content-center">
-							<span class="fa fa-twitter">
-								<i class="sr-only">Twitter</i>
+							<span class="fa fa-youtube">
+								<i class="sr-only">Youtube</i>
 							</span>
 						</a>
+			
+						{% if app.user %}
+						<a href="/logout" class="d-flex align-items-center justify-content-center">
+							<span class="fa fa-user">
+								<i class="sr-only">Admin</i>
+							</span>
+						</a>
+						{% else %}
+						<a href="/login" class="d-flex align-items-center justify-content-center">
+							<span class="fa fa-lock">
+								<i class="sr-only">Admin</i>
+							</span>
+						</a>
+						{% endif %}
+						<!--
 						<a href="#" class="d-flex align-items-center justify-content-center">
 							<span class="fa fa-instagram">
 								<i class="sr-only">Instagram</i>
@@ -55,6 +70,7 @@
 								<i class="sr-only">Dribbble</i>
 							</span>
 						</a>
+						-->
 					</p>
 				</div>
 			</div>
@@ -72,7 +88,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link {{'/' ==  currentPath ? 'active' : '' }}" href="{{ path('home') }}">Inicio</a>
+					<a class="nav-link {{'/' ==  currentPath ? 'active' : '' }}" href="{{ path('home') }}">Início</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link {{'curso' in currentPath ? 'active' : '' }}" href="{{ path('curso_index') }}">Cursos</a>
@@ -81,7 +97,7 @@
 					<a class="nav-link {{'eventos' in currentPath ? 'active' : '' }}" href="{{ path('evento_index') }}">Eventos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link {{'noticia' in currentPath ? 'active' : '' }}" href="{{ path('noticia_index') }}">Noticias</a>
+					<a class="nav-link {{'noticia' in currentPath ? 'active' : '' }}" href="{{ path('noticia_index') }}">Notícias</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link {{'instituicional' in currentPath ? 'active' : '' }}" href="{{ path('instituicional_index') }}">Instituicional</a>

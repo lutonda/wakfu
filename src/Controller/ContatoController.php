@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Contato;
 use App\Form\ContatoType;
 use App\Repository\ContatoRepository;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use App\Repository\ContatoRepository as RepositoryContatoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/contato')]
@@ -56,6 +59,29 @@ class ContatoController extends AbstractController
             'title'=>'Galeria de fotos',
             'subtitle'=>'Nossa variedade de Cursos'
         ]);
+    }
+
+    #[Route('/sumit', name: 'contato_sumit', methods: ['GET', 'POST'])]
+    public function submit(Request $request, MailerInterface $mailer): Response
+    {
+
+
+        $email = (new Email())
+            
+            ->from(new Address($request->get('email'), $request->get('name')))
+            ->to('lutonda@gmail.com'/*'ispbengo@gmail.com'*/)
+            ->cc('info@ispbengo.ao')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('PORTAL ISPBENGO :: '.$request->get('subject'))
+            ->text($request->get('message'))
+            ->html($request->get('message'));
+
+       $sent= $mailer->send($email);
+        
+
+        return $this->redirectToRoute('contactos',['success'=>$sent==null ? 'true':'false']);
     }
 
     #[Route('/{id}', name: 'contato_show', methods: ['GET'])]
