@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eventos
+{% endblock %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block coverUrl %}{% endblock %}
+{% block body %}
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+            	<h4 class="heading mb-3">#{{vaga_emprego.codigo|slice(0,4)|upper}}</h4>
+				<h1>{{vaga_emprego.categoria}} de {{ vaga_emprego.area }}</h1>
+                
+				<div class="col-md-12 col-lg-12 d-flex">
+					<div class="blog-entry justify-content-end aos-init aos-animate" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+						<div class="text">
+							<span>
+								<a href="#">
+									<i class="fa fa-comment me-1"></i>
+									0 Comentarios
+								</a>
+							</span>
+							<span>|</span>
+							<span>
+								<i class="fa fa-calendar-o me-1"></i>
+								{{vaga_emprego.created|date('d M Y')}}
+							</span>
+                            
+                            {% if admin %}
+							<span>| 
+								<a href="{{ path('vaga_emprego_edit', {'id': vaga_emprego.id}) }}" class="btn btn-primary pull-right">
+                                <i class="fa fa-edit"></i>
+                                Edit</a>
+							</span>
+                            <span class="pull-right">
+							{{ include('vaga_emprego/_delete_form.html.twig') }}
+                            </span>
+							<span>
+								<a href="{{ path('candidatura_index', {'id': vaga_emprego.id}) }}" class="btn btn-sucess pull-right">
+                                <i class="fa fa-list"></i>
+                                Candidaturas</a>
+							</span>
+                            {% else %}
+                            
+                            {% endif %}
+							<span>
+								<a href="#" disabled class="btn btn-default pull-right">
+                                <i class="fa fa-check"></i>
+                                Candidatar-se</a>
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row g-0" style="background:#ccc">
+						<div class="col-lg-8">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <td>{{ vaga_emprego.categoria }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Area</th>
+                                        <td>{{ vaga_emprego.area }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Disponivel até</th>
+                                        <td>{{ vaga_emprego.dataFim ? vaga_emprego.dataFim|date('Y-m-d') : '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Active</th>
+                                        <td>{{ vaga_emprego.active ? 'Yes' : 'No' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Vagas</th>
+                                        <td>{{ vaga_emprego.quantidade }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h3>Descrição</>
+								<p>{{vaga_emprego.descricao|raw}}
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

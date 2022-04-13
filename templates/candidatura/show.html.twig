@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidatura{% endblock %}
+
+{% block body %}
+    <h1>Candidatura</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidatura.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ candidatura.numero }}</td>
+            </tr>
+            <tr>
+                <th>Numero_documento_identificacao</th>
+                <td>{{ candidatura.numeroDocumentoIdentificacao }}</td>
+            </tr>
+            <tr>
+                <th>Data_nascimento</th>
+                <td>{{ candidatura.dataNascimento ? candidatura.dataNascimento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Area_formacao</th>
+                <td>{{ candidatura.areaFormacao }}</td>
+            </tr>
+            <tr>
+                <th>Instituicao</th>
+                <td>{{ candidatura.instituicao }}</td>
+            </tr>
+            <tr>
+                <th>Requerimento</th>
+                <td>{{ candidatura.requerimento }}</td>
+            </tr>
+            <tr>
+                <th>Curriculum</th>
+                <td>{{ candidatura.curriculum }}</td>
+            </tr>
+            <tr>
+                <th>Documento_identificacao</th>
+                <td>{{ candidatura.documentoIdentificacao }}</td>
+            </tr>
+            <tr>
+                <th>Certificado_habilitacao</th>
+                <td>{{ candidatura.certificadoHabilitacao }}</td>
+            </tr>
+            <tr>
+                <th>Diploma</th>
+                <td>{{ candidatura.diploma }}</td>
+            </tr>
+            <tr>
+                <th>Outros</th>
+                <td>{{ candidatura.outros }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ candidatura.estado }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ candidatura.created ? candidatura.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ candidatura.active ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidatura_index') }}">back to list</a>
+
+    <a href="{{ path('candidatura_edit', {'id': candidatura.id}) }}">edit</a>
+
+    {{ include('candidatura/_delete_form.html.twig') }}
+{% endblock %}

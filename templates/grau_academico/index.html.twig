@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GrauAcademico index{% endblock %}
+
+{% block body %}
+    <h1>GrauAcademico index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Nivel</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grau_academico in grau_academicos %}
+            <tr>
+                <td>{{ grau_academico.id }}</td>
+                <td>{{ grau_academico.nome }}</td>
+                <td>{{ grau_academico.nivel }}</td>
+                <td>{{ grau_academico.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('grau_academico_show', {'id': grau_academico.id}) }}">show</a>
+                    <a href="{{ path('grau_academico_edit', {'id': grau_academico.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('grau_academico_new') }}">Create new</a>
+{% endblock %}

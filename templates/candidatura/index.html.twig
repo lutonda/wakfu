@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidatura index{% endblock %}
+
+{% block body %}
+    <h1>Candidatura index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Numero_documento_identificacao</th>
+                <th>Data_nascimento</th>
+                <th>Area_formacao</th>
+                <th>Instituicao</th>
+                <th>Requerimento</th>
+                <th>Curriculum</th>
+                <th>Documento_identificacao</th>
+                <th>Certificado_habilitacao</th>
+                <th>Diploma</th>
+                <th>Outros</th>
+                <th>Estado</th>
+                <th>Created</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidatura in candidaturas %}
+            <tr>
+                <td>{{ candidatura.id }}</td>
+                <td>{{ candidatura.numero }}</td>
+                <td>{{ candidatura.numeroDocumentoIdentificacao }}</td>
+                <td>{{ candidatura.dataNascimento ? candidatura.dataNascimento|date('Y-m-d') : '' }}</td>
+                <td>{{ candidatura.areaFormacao }}</td>
+                <td>{{ candidatura.instituicao }}</td>
+                <td>{{ candidatura.requerimento }}</td>
+                <td>{{ candidatura.curriculum }}</td>
+                <td>{{ candidatura.documentoIdentificacao }}</td>
+                <td>{{ candidatura.certificadoHabilitacao }}</td>
+                <td>{{ candidatura.diploma }}</td>
+                <td>{{ candidatura.outros }}</td>
+                <td>{{ candidatura.estado }}</td>
+                <td>{{ candidatura.created ? candidatura.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ candidatura.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('candidatura_show', {'id': candidatura.id}) }}">show</a>
+                    <a href="{{ path('candidatura_edit', {'id': candidatura.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidatura_new') }}">Create new</a>
+{% endblock %}
