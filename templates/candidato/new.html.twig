@@ -9,7 +9,7 @@
                 <div class="alert alert-primary" style="text-align:center; padding:9%" role="alert">
                     "Caro candidato, a tua inscrição foi feita com sucesso!"<br/>
                     Clique aqui para baixar o comprovativo de inscrição<br/>
-                    <a class="btn btn-lg btn-primary" href="#"><i class="fa fa-download"></i> Baixar comprovativo</a>
+                    <a class="btn btn-lg btn-primary" href="{{path('candidato_comprovativo', {'id': app.request.get('id')})}}"><i class="fa fa-download"></i> Baixar comprovativo</a>
                 </div>
             </div>
             {% elseif app.request.get('success')=='false'  %}
@@ -18,7 +18,7 @@
                 
                 "Caro candidato, a tua inscrição não foi feita registada!"
                 por favor certifique que preencheo o formulario correctamente e volte a tentar
-                <a class="btn btn-lg btn-primary" href="#"><i class="fa fa-download"></i></a>
+                
                 </div>
                 {{ include('candidato/_form.html.twig') }}
             {% else %}

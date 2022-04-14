@@ -12,14 +12,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/candidato')]
 class CandidatoController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'candidato_index', methods: ['GET'])]
     public function index(CandidatoRepository $candidatoRepository): Response
     {
         return $this->render('candidato/index.html.twig', [
             'candidatos' => $candidatoRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/comprovativo/{id}', name: 'candidato_comprovativo', methods: ['GET'])]
+    public function comprovativo(Candidato $candidato): Response
+    {
+        return $this->render('candidato/comprovativo.html.twig', [
+            'candidato' => $candidato,
         ]);
     }
 
@@ -80,7 +92,7 @@ class CandidatoController extends AbstractController
             $entityManager->persist($candidato);
             $entityManager->flush();
 
-            return $this->redirectToRoute('candidato_new', ['success'=>true], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('candidato_new', ['success'=>true,'id'=>$candidato->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('candidato/new.html.twig', [
@@ -89,6 +101,7 @@ class CandidatoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'candidato_show', methods: ['GET'])]
     public function show(Candidato $candidato): Response
     {
@@ -97,6 +110,7 @@ class CandidatoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'candidato_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Candidato $candidato, EntityManagerInterface $entityManager): Response
     {
@@ -115,6 +129,7 @@ class CandidatoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'candidato_delete', methods: ['POST'])]
     public function delete(Request $request, Candidato $candidato, EntityManagerInterface $entityManager): Response
     {

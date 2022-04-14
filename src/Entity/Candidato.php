@@ -69,7 +69,7 @@ class Candidato
 
     public function getNumero()
     {
-        return str_pad($this->numero, 9, "0", STR_PAD_LEFT);
+        return str_pad($this->numero, 6, "0", STR_PAD_LEFT);
     }
 
     public function getNomeCompleto(): ?string
