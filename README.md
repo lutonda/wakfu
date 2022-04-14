@@ -3,14 +3,14 @@
 
 
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
-sudo apt install  ca-certificates apt-transport-https software-properties-common
+sudo apt install  ca-certificates apt-transport-https software-properties-common -y
 
-sudo add-apt-repository ppa:ondrej/php
+sudo add-apt-repository ppa:ondrej/php -y
 
 sudo apt update
-sudo apt install php8.0 libapache2-mod-php8.0  php8.0-gd php8.0-xml php8.0-mcrypt php8.0-mysql
+sudo apt install php8.0 libapache2-mod-php8.0  php8.0-gd php8.0-xml php8.0-mcrypt php8.0-mysql -y
 
 echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sources.list.d/symfony-cli.list
 sudo apt update

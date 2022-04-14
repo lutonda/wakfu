@@ -79,7 +79,7 @@ class CursoController extends AbstractController
     {
         return $this->render('curso/show.html.twig', [
             'curso' => $curso,
-            'title'=>$curso->getCode().':: '.$curso->getTitulo(),
+            'title'=>$curso->getTitulo(),
             'subtitle'=>'CURSOS'
         ]);
     }

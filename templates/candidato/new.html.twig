@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Criar nova candidatura{% endblock %}
+{% block body %}
+{% if admin %}
+    <a href="{{path('candidato_index')}}" class="pull-right btn btn-primary"> Candidaturas</a>
+{% endif %}
+    {% if app.request.get('success')=='true' %}
+	        <div class="container-xl" style="background:#FFF">
+                <div class="alert alert-primary" style="text-align:center; padding:9%" role="alert">
+                    "Caro candidato, a tua inscrição foi feita com sucesso!"<br/>
+                    Clique aqui para baixar o comprovativo de inscrição<br/>
+                    <a class="btn btn-lg btn-primary" href="#"><i class="fa fa-download"></i> Baixar comprovativo</a>
+                </div>
+            </div>
+            {% elseif app.request.get('success')=='false'  %}
+
+                <div class="alert alert-primary" role="alert">
+                
+                "Caro candidato, a tua inscrição não foi feita registada!"
+                por favor certifique que preencheo o formulario correctamente e volte a tentar
+                <a class="btn btn-lg btn-primary" href="#"><i class="fa fa-download"></i></a>
+                </div>
+                {{ include('candidato/_form.html.twig') }}
+            {% else %}
+                {{ include('candidato/_form.html.twig') }}
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidato index{% endblock %}
+
+{% block body %}
+<section class="ftco-section bg-light ftco-no-pt">
+	<div class="container-xl" style="background:#FFF">
+		<div class="row justify-content-center">
+
+			<div class="col-md-8 heading-section mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+				<h1>
+				</div>
+				<div class="text-left col-md-6">
+					
+				</div>
+				<div class="text-right col-md-6">
+					<div class="pull-right">
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				
+                
+    <h1>Candidaturas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Nº Doc. Identificacao</th>
+                <th>Area de Formacao</th>
+                <th>Instituição</th>
+                <th>Grau Académico</th>
+                <th>Categoria</th>
+                <th>Area</th>
+                <th>Data</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidato in candidatos %}
+            <tr>
+                <td>{{candidato.numero}}</td>
+                <td>{{ candidato.nomeCompleto }}</td>
+                <td>{{ candidato.dataNascimento ? candidato.dataNascimento|date('d/m/Y') : '' }}</td>
+                <td>{{ candidato.numeroDocumentoIdentificacao }}</td>
+                <td>{{ candidato.areaFormacao }}</td>
+                <td>{{ candidato.instituicao }}</td>
+                <td>{{ candidato.grauAcademico }}</td>
+                <td>{{ candidato.categoria }}</td>
+                <td>{{ candidato.area }}</td>
+                <td>{{ candidato.created ? candidato.created|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('candidato_show', {'id': candidato.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+			</div>
+		</div>
+	</section>
+{% endblock %}

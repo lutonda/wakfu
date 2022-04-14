@@ -82,11 +82,10 @@ class InstituicionalController extends AbstractController
     public function submit(Request $request, MailerInterface $mailer): Response
     {
 
-
         $email = (new Email())
             
             ->from(new Address($request->get('email'), $request->get('name')))
-            ->to('lutonda@gmail.com'/*'ispbengo@gmail.com'*/)
+            ->to('ispbengo@gmail.com')
             ->cc('info@ispbengo.ao')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')

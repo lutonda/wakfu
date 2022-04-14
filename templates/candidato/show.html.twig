@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidato{% endblock %}
+
+{% block body %}
+<section class="ftco-section bg-light ftco-no-pt">
+	<div class="container-xl" style="background:#FFF">
+		<div class="row justify-content-center">
+                <div class="text-left col-md-6">
+					<a href="{{ path('candidato_index') }}" class="btn btn-default">
+						<i class="fa fa-chevron-left"></i>
+						Voltar as Candidaturas
+					</a>
+				</div>
+				<div class="text-right col-md-6">
+					{% if admin %}
+						<div class="pull-right">
+							<a href="{{ path('candidato_edit', {'id': candidato.id}) }}" class=" btn btn-primary">
+								<i class="fa fa-edit"></i>Editar</a>
+
+							{{ include('candidato/_delete_form.html.twig') }}
+						</div>
+					{% endif %}
+				</div>
+			<div class="col-md-8 heading-section mb-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+				<h1>
+				</div>
+				<div class="text-left col-md-6">
+					
+				</div>
+				<div class="text-right col-md-6">
+					<div class="pull-right">
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				
+                
+    <h1>Candidatura <b>#{{candidato.numero}}</b></h1>
+    
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NomeCompleto</th>
+                <td>{{ candidato.nomeCompleto }}</td>
+            </tr>
+            <tr>
+                <th>DataNascimento</th>
+                <td>{{ candidato.dataNascimento ? candidato.dataNascimento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NumeroDocumentoIdentificacao</th>
+                <td>{{ candidato.numeroDocumentoIdentificacao }}</td>
+            </tr>
+            <tr>
+                <th>Residencia</th>
+                <td>{{ candidato.residencia }}</td>
+            </tr>
+            <tr>
+                <th>AreaFormacao</th>
+                <td>{{ candidato.areaFormacao }}</td>
+            </tr>
+            <tr>
+                <th>Instituicao</th>
+                <td>{{ candidato.instituicao }}</td>
+            </tr>
+            <tr>
+                <th>GrauAcademico</th>
+                <td>{{ candidato.grauAcademico }}</td>
+            </tr>
+            <tr>
+                <th>Categoria</th>
+                <td>{{ candidato.categoria }}</td>
+            </tr>
+            <tr>
+                <th>Area</th>
+                <td>{{ candidato.area }}</td>
+            </tr>
+            <tr>
+                <th>Requerimento</th>
+                <td>
+                <a href="/images/uploads/Candidatura/{{ candidato.requerimento }}" target="_blank" class="btn btn-lg btn-primary"><i class="fa fa-file-pdf-o"></i> Baixar</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Curriculum</th>
+                <td><a href="/images/uploads/Candidatura/{{ candidato.curriculum }}" target="_blank" class="btn btn-lg btn-primary"><i class="fa fa-file-pdf-o"></i> Baixar</a></td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ candidato.created ? candidato.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidato_index') }}">back to list</a>
+
+    <a href="{{ path('candidato_edit', {'id': candidato.id}) }}">edit</a>
+
+    {{ include('candidato/_delete_form.html.twig') }}
+
+    
+			</div>
+		</div>
+	</section>
+{% endblock %}

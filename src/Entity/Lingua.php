@@ -30,7 +30,7 @@ class Lingua
     #[ORM\Column(type: 'datetime', options:["default"=> "CURRENT_TIMESTAMP"])]
     protected $created;  
 
-    #[ORM\Column(type:'boolean', options:["default"=> 'true'])]
+    #[ORM\Column(type:'boolean', options:["default"=> true])]
     protected $isactive = true; 
 
     public function __construct()
