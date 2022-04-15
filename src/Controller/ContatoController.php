@@ -100,6 +100,7 @@ class ContatoController extends AbstractController
     #[Route('/{id}', name: 'contato_delete', methods: ['POST'])]
     public function delete(Request $request, Contato $contato, EntityManagerInterface $entityManager): Response
     {
+        
         if ($this->isCsrfTokenValid('delete'.$contato->getId(), $request->request->get('_token'))) {
             $entityManager->remove($contato);
             $entityManager->flush();

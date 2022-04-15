@@ -6,10 +6,12 @@ use App\Entity\Candidato;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 
 class CandidatoType extends AbstractType
@@ -17,15 +19,30 @@ class CandidatoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomeCompleto')
+            ->add('nomeCompleto'
+            ,null,[
+                'label'=>"Nome Completo"
+            ]
+            )
+            ->add('email', EmailType::class)
             ->add('dataNascimento', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label'=>"Data de Nascimento"
             ])
-            ->add('numeroDocumentoIdentificacao')
-            ->add('residencia')
-            ->add('areaFormacao')
-            ->add('instituicao')
+            ->add('numeroDocumentoIdentificacao',TextType::class,[
+                'label'=>"Número do Documento Identificação"
+            ])
+            ->add('residencia',TextType::class,[
+                'label'=>"Residência"
+            ])
+            ->add('areaFormacao',TextType::class,[
+                'label'=>"Área de Formação"
+            ])
+            ->add('instituicao',TextType::class,[
+                'label'=>"Instituição"
+            ])
             ->add('grauAcademico', ChoiceType::class, [
+                "label"=>"Grau Académico",
                 "choices" => ["Doutor","Mestre","Licenciado"],
                 "choice_label" => function($key, $index) {
                     return $key;
@@ -47,13 +64,17 @@ class CandidatoType extends AbstractType
             ])
             ->add('area', ChoiceType::class, [
                 "choices" => [
-                    "Engenharia de Tecnologia Agro-alimentar"
+                    "Biologia (Ciências)"
+                    ,"Química (Ciências)"
+                    ,"Física (Ciências)"
+                    ,"Medician Veterinária"
+                    ,"Matemática"
                     ,"Metodologia de Investigação Científica"
-                    ,"Biologia"
-                    ,"Lingua Portuguesa"
+                    ,"Línguas"
                     ,"Engenharia Industrial"
-                    ,"Energia Agrónoma"
-                    ,"Física"
+                    ,"Agronomia"
+                    ,"Engenharia de Tecnologia Agroalimentar"
+                     
                 ],
                 "choice_label" => function($key, $index) {
                     return $key;
@@ -61,25 +82,24 @@ class CandidatoType extends AbstractType
                 "expanded" => true,
                 "multiple" => false,
                 "required" => true,
-                "label" => "Area a qual se candidata",
+                "label" => "Área a qual se candidata",
             ])
             ->add('requerimento', FileType::class, [
-                'label' => '
-                Clique no link para visualizar o modelo de requerimento: https://drive.google.com/file/d/1SK-h66aUoSMpWgo_bMciDZC9aD-N2sQI/view?usp=sharing
-                (PDF)',
-
+                'label' => 'Inserir Requerimento (PDF)',
+                'attr'=>['accept'=>"application/pdf"],
+                //Clique no link para visualizar o modelo de requerimento: https://drive.google.com/file/d/1SK-h66aUoSMpWgo_bMciDZC9aD-N2sQI/view?usp=sharing
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
-                'required' => false,
+                'required' => true,
 
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '10m',
                         'mimeTypes' => [
                             'application/pdf',
                         ],
@@ -88,21 +108,21 @@ class CandidatoType extends AbstractType
                 ],
             ])
             ->add('curriculum', FileType::class, [
-                'label' => 'Inserir os documentos na seguinte ordem: Curriculum, Cópia do documento de Identificação, Certificado de Habilitações, Diploma, e outros documentos que comprovam as informações do curriculum.
+                'label' => 'Inserir os documentos na seguinte ordem: Curriculum, Cópia do Bilhete de Identidade, Certificado de Habilitações, Declaração de reconhecimento de estudos pelo INAREES, Cópia de documentos mensionados no Curriculum.
                 (PDF)',
-
+                'attr'=>['accept'=>"application/pdf"],
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
-                'required' => false,
+                'required' => true,
 
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '10m',
                         'mimeTypes' => [
                             'application/pdf',
                         ],

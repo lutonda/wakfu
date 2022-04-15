@@ -1,18 +1,35 @@
 <html>
     <head>
+    
     <style>
         *{font-family:arial}
         body{
             padding:15px
+        }
+        body>table{
+            display:none
         }
         td table, td th, td td {
             border: 1px solid black;
             border-collapse: collapse;
             padding:5px
             }
+
+    @media print {
+        /* styles here */
+        
+        body>table{
+            display:block
+        }
+
+        .close{
+            display:none
+        }
+    }
     </style>
     </head>
     <body>
+    <a href="/" class="close"><button class="btn btn-lg btn-success">Fechar</button></a>
     <table style="margin:15px; widtd:720px; ">
         <tr>
             <td style="text-align:center">
@@ -66,7 +83,7 @@
   <tr>
     <td rowspan="2">
     CONTACTOS
-        <h3>-</h3>
+        <h3>{{candidato.email}}</h3>
     </td>
     <td colspan="2">
     CATEGORIA QUE SE CANDIDATOU
@@ -123,7 +140,7 @@ Comprovativo de candidatura ao concurso público gerado electronicamente em:<br/
     <script>
         print();
         setTimeout(function(){
-            location.href="/"
+            //location.href="/"
         },1000)
     </script>
     </body>

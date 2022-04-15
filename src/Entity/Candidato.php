@@ -29,6 +29,9 @@ class Candidato
 
     #[ORM\Column(type: 'string', length: 255)]
     private $numeroDocumentoIdentificacao;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $residencia;
@@ -80,6 +83,18 @@ class Candidato
     public function setNomeCompleto(string $nomeCompleto): self
     {
         $this->nomeCompleto = $nomeCompleto;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
