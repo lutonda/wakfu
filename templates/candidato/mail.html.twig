@@ -29,7 +29,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>NomeCompleto</th>
+                <th>Nome Completo</th>
                 <td>{{ candidato.nomeCompleto }}</td>
             </tr>
             <tr>
@@ -37,27 +37,27 @@
                 <td>{{ candidato.email }}</td>
             </tr>
             <tr>
-                <th>DataNascimento</th>
+                <th>Data de Nascimento</th>
                 <td>{{ candidato.dataNascimento ? candidato.dataNascimento|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>NumeroDocumentoIdentificacao</th>
+                <th>Número do Documento Identificação</th>
                 <td>{{ candidato.numeroDocumentoIdentificacao }}</td>
             </tr>
             <tr>
-                <th>Residencia</th>
+                <th>Residência</th>
                 <td>{{ candidato.residencia }}</td>
             </tr>
             <tr>
-                <th>AreaFormacao</th>
+                <th>Área de Formação</th>
                 <td>{{ candidato.areaFormacao }}</td>
             </tr>
             <tr>
-                <th>Instituicao</th>
+                <th>Instituição</th>
                 <td>{{ candidato.instituicao }}</td>
             </tr>
             <tr>
-                <th>GrauAcademico</th>
+                <th>Grau Académico</th>
                 <td>{{ candidato.grauAcademico }}</td>
             </tr>
             <tr>
@@ -65,21 +65,25 @@
                 <td>{{ candidato.categoria }}</td>
             </tr>
             <tr>
-                <th>Area</th>
+                <th>Área</th>
                 <td>{{ candidato.area }}</td>
             </tr>
             <tr>
                 <th>Requerimento</th>
                 <td>
-                <a href="/images/uploads/Candidatura/{{ candidato.requerimento }}" target="_blank" class="btn btn-lg btn-primary"><i class="fa fa-file-pdf-o"></i> Baixar</a>
+                <a href="https://app.ispbengo.ao/images/uploads/Candidatura/{{ candidato.requerimento }}" target="_blank" class="btn btn-lg btn-primary">
+                Baixar Anexo
+                </a>
                 </td>
             </tr>
             <tr>
                 <th>Curriculum</th>
-                <td><a href="/images/uploads/Candidatura/{{ candidato.curriculum }}" target="_blank" class="btn btn-lg btn-primary"><i class="fa fa-file-pdf-o"></i> Baixar</a></td>
+                <td><a href="https://app.ispbengo.ao/images/uploads/Candidatura/{{ candidato.curriculum }}" target="_blank" class="btn btn-lg btn-primary">
+                    Baixar Anexo
+                </a></td>
             </tr>
             <tr>
-                <th>Created</th>
+                <th>Data da candidatura</th>
                 <td>{{ candidato.created ? candidato.created|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>

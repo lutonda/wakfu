@@ -39,7 +39,7 @@ class CandidatoController extends AbstractController
     }
 
     #[Route('/new', name: 'candidato_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,CandidatoRepository $candidatoRepository, MailerInterface $mailer): Response
     {
         $candidato = new Candidato();
         $form = $this->createForm(CandidatoType::class, $candidato);
@@ -94,7 +94,7 @@ class CandidatoController extends AbstractController
             
             $entityManager->persist($candidato);
             $entityManager->flush();
-            $this->enviarEmail($candidato,$mailer);
+            $this->enviarEmail($candidatoRepository->find($candidato->getId()),$mailer);
             return $this->redirectToRoute('candidato_new', ['success'=>'true','id'=>$candidato->getId()], Response::HTTP_SEE_OTHER);
         }
 
@@ -158,7 +158,7 @@ class CandidatoController extends AbstractController
             
             ->attachFromPath($this->getParameter('uploads_directory').'Candidatura/'.$candidato->getRequerimento())
             ->attachFromPath($this->getParameter('uploads_directory').'Candidatura/'.$candidato->getCurriculum())
-            ->subject('PORTAL ISPBENGO :: '.$candidato->getNomeCompleto())
+            ->subject('Candidatura :: '.$candidato->getNumero().' - '.$candidato->getNomeCompleto())
             
             ->html(
                 $this->render('candidato/mail.html.twig', [

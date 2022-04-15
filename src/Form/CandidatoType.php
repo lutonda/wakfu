@@ -50,7 +50,6 @@ class CandidatoType extends AbstractType
                 "expanded" => true,
                 "multiple" => false,
                 "required" => true,
-                "label" => "Grau Academico",
             ])
             ->add('categoria', ChoiceType::class, [
                 "choices" => ["Assistente","Assistente Estagiário"],
@@ -67,7 +66,7 @@ class CandidatoType extends AbstractType
                     "Biologia (Ciências)"
                     ,"Química (Ciências)"
                     ,"Física (Ciências)"
-                    ,"Medician Veterinária"
+                    ,"Medicina Veterinária"
                     ,"Matemática"
                     ,"Metodologia de Investigação Científica"
                     ,"Línguas"
@@ -85,9 +84,11 @@ class CandidatoType extends AbstractType
                 "label" => "Área a qual se candidata",
             ])
             ->add('requerimento', FileType::class, [
-                'label' => 'Inserir Requerimento (PDF)',
+                'label' => 'Inserir Requerimento (PDF)<br/> Clique no link para visualizar o modelo de requerimento:<br><a target="_blank" href="https://drive.google.com/file/d/1SK-h66aUoSMpWgo_bMciDZC9aD-N2sQI/view?usp=sharing">https://drive.google.com/file/d/1SK-h66aUoSMpWgo_bMciDZC9aD-N2sQI/view?usp=sharing</a>',
+                'label_html'=> true,
+                'label_attr'=>['label_html'=> true],
                 'attr'=>['accept'=>"application/pdf"],
-                //Clique no link para visualizar o modelo de requerimento: https://drive.google.com/file/d/1SK-h66aUoSMpWgo_bMciDZC9aD-N2sQI/view?usp=sharing
+                //
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 
@@ -108,8 +109,9 @@ class CandidatoType extends AbstractType
                 ],
             ])
             ->add('curriculum', FileType::class, [
-                'label' => 'Inserir os documentos na seguinte ordem: Curriculum, Cópia do Bilhete de Identidade, Certificado de Habilitações, Declaração de reconhecimento de estudos pelo INAREES, Cópia de documentos mensionados no Curriculum.
-                (PDF)',
+                'label' => 'Inserir os documentos na seguinte ordem(PDF):<ol><li>Curriculum, <li>Cópia do Bilhete de Identidade, <li>Certificado de Habilitações, <li>Declaração de reconhecimento de estudos pelo INAREES, <li>Cópia de documentos mencionados no Curriculum.</ol>
+                ',
+                'label_html'=> true,
                 'attr'=>['accept'=>"application/pdf"],
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
